@@ -1,0 +1,1 @@
+export { default } from 'ember-slider/components/slider-handle';

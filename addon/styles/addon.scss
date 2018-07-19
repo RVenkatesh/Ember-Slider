@@ -1,0 +1,110 @@
+@import "compass";
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ember-slider {
+    /* Variables */
+    $slider-path-color: #ccc;
+    $slider-filler-color: #aaa;
+    $slider-handle-color: #eee;
+    $handle-width: 30px;
+    $handle-padding: 4px;
+
+    @include box-sizing();
+    position: relative;
+    overflow: hidden;
+    &.closed {
+        background-color: $slider-path-color;
+        border-radius: $handle-width + $handle-padding;
+        .slider-color-filler {
+            display: none;
+        }
+        .slider-color-filler-closed {
+            display: block;
+        }
+        .slider-handle {
+            background-color: $slider-filler-color;
+            &:before {
+                background-color: $slider-filler-color;
+                z-index: 1;
+            }
+        }
+    }
+    .slider-path {
+        width: calc(100% - 34px);
+        position: relative;
+        left: 15px;
+    }
+    .slider-color-filler, .slider-pseudo-path {
+        background-color: $slider-filler-color;
+        height: 4px;
+        border-radius: 4px;
+        margin-top: -2px;
+        position: absolute;
+        top: 50%;
+    }
+    .slider-pseudo-path {
+        background-color: $slider-path-color;
+        width: 100%;
+    }
+    .slider-color-filler-closed {
+        background-color: $slider-filler-color;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    .slider-handle {
+        @include transform(translateX(-15px));
+        text-align: center;
+        line-height: $handle-width + $handle-padding;
+
+        height: $handle-width + $handle-padding;
+        width: $handle-width + $handle-padding;
+        border-radius: $handle-width + $handle-padding;
+        
+        position: relative;
+        z-index: 1;
+
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            width: $handle-width * 5;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 50%;
+        }
+        &:after {
+            content: '';
+            width: $handle-width * 5;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 80%;
+        }
+
+        .handle-cover {
+            background-color: $slider-handle-color;
+            width: $handle-width;
+            height: $handle-width;
+
+            box-shadow: 1px 1px 1px #555;
+            border-radius: $handle-width;
+            
+            position: absolute;
+            left: $handle-padding / 2;
+            top: $handle-padding / 2;
+            z-index: 2;
+        }
+
+        .slider-value {
+            position: relative;
+            z-index: 3;
+        }
+    }
+}
