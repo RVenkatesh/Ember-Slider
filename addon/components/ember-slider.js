@@ -6,9 +6,10 @@ export default Ember.Component.extend(RecognizerMixin, {
   layout,
   classNames: 'ember-slider',
   recognizers: 'pan tap',
-  classNameBindings: 'config.type.closed',
+  classNameBindings: ['config.type.closed', 'config.noValue', 'sliding', 'leftClosing', 'rightClosing', 'animate'],
   config: {},
   value: 0,
+  onChange() {},
   init() {
     this._super(...arguments);
 
@@ -30,7 +31,12 @@ export default Ember.Component.extend(RecognizerMixin, {
     this.set('_LOCKED_HANDLE_POSITION', handle_left);
   },
 
-  moveHandle(positionInPX) {
+  moveHandle(positionInPX, animate) {
+    if (animate) {
+      this.set('animate', true);
+    } else {
+      this.set('animate', false);
+    }
     let {min, 
       max, 
       SLIDER_PATH, 
@@ -40,9 +46,9 @@ export default Ember.Component.extend(RecognizerMixin, {
     } = this.getProperties('min', 'max', 'SLIDER_PATH', 'SLIDER_HANDLE', 'SLIDER_COLOR_FILLER', 'SLIDER_COLOR_FILLER_CLOSED');
     
     let difference  = max - min;
-    let path_width = SLIDER_PATH.width();
+    let pathWidth = SLIDER_PATH.width();
 
-    let movedPercentage = (positionInPX / path_width) * 100;
+    let movedPercentage = (positionInPX / pathWidth) * 100;
 
     // Make sure the percentage value stays within its boundaries
     if (movedPercentage <= 0) {
@@ -53,24 +59,40 @@ export default Ember.Component.extend(RecognizerMixin, {
 
     let newValue = Math.round(min + (movedPercentage * difference) / 100);
     
+    this.get('onChange')(this.get('value'), newValue);
     this.set('value', newValue);
     SLIDER_HANDLE.css('left', movedPercentage + '%');
     SLIDER_COLOR_FILLER.css('width', movedPercentage + '%');
     SLIDER_COLOR_FILLER_CLOSED.css('width', `calc(${movedPercentage}% - 15px)`);
+    this.addClosenessClass(positionInPX, pathWidth);
+  },
+
+  // Add classes to the slider based on whether the handle is closer to left end or right end
+  addClosenessClass(positionInPX, pathWidth) {
+    if (positionInPX < 50) {
+      this.set('leftClosing', true);
+      this.set('rightClosing', false);
+    } else if (pathWidth - positionInPX < 50) {
+      this.set('rightClosing', true);
+      this.set('leftClosing', false);
+    } else {
+      this.set('rightClosing', false);
+      this.set('leftClosing', false);
+    }
   },
 
   tap(event) {
     let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
     let sliderPathLeft = this.get('SLIDER_PATH').position().left;
-    // console.log(event);
-    this.moveHandle(tapPosition - sliderPathLeft);
+
+    this.moveHandle(tapPosition - sliderPathLeft, true);
   },
 
   panStart() {
     this.lockHandlePosition();
   },
   panMove(event) {
-    if (!this.get('panWithHandle')) {
+    if (!this.get('sliding')) {
       return;
     }
     let gesture = event.originalEvent.gesture;
@@ -79,11 +101,11 @@ export default Ember.Component.extend(RecognizerMixin, {
   },
   panEnd() {
     this.lockHandlePosition();
-    this.set('panWithHandle', false);
+    this.set('sliding', false);
   },
   actions: {
     handleMoveStart() {
-      this.set('panWithHandle', true);
+      this.set('sliding', true);
     }
   }
 });

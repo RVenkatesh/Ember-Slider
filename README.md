@@ -31,7 +31,7 @@ Add configuration options if necessary in the corresponding route's controller o
     }
 }
 ```
-Refer [Configurations options](/#configuration-options) section for details about how different options available.
+Refer [Configurations options](/#configuration-options) section for details about the different options available.
 
 ## Configuration options
 
@@ -39,3 +39,11 @@ Refer [Configurations options](/#configuration-options) section for details abou
 | --- | --- | --- |
 | type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed' |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
+
+## Callback options 
+
+Apart from configuration options, the component also provides callback functions as mentioned below.
+
+| Function | Params | Description |
+| --- | --- | --- |
+| onChange | ```( oldValue, newValue )``` | This is called when the value of the slider changes. |

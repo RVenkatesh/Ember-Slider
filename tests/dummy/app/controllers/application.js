@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
     options: {
         type: {
             closed: true
-        }
+        },
+        noValue: false
     }
 });

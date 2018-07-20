@@ -15,6 +15,11 @@ body {
     @include box-sizing();
     position: relative;
     overflow: hidden;
+    &.no-value {
+        .slider-value {
+            display: none;
+        }
+    }
     &.closed {
         background-color: $slider-path-color;
         border-radius: $handle-width + $handle-padding;
@@ -32,6 +37,56 @@ body {
             }
         }
     }
+    &.sliding {
+        .slider-handle .slider-value {
+            @include transform(translateX(-105%));
+            @include transition(transform .3s);
+            .value-mover {
+                border: 1px solid rgba(0,0,0,.5);
+                border-radius: 3px;
+                position: relative;
+                &:after {
+                    content: '';
+                    background: transparent;
+                    
+                    border-top: 7px solid transparent;
+                    border-right: 0;
+                    border-left: 10px solid rgba(0,0,0,.5);
+                    border-bottom: 7px solid transparent;
+                    
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -7px;
+                    left: 100%;
+                }
+            }
+        }
+        &.left-closing {
+            .slider-handle .slider-value {
+                @include transform(translateX(105%));
+                .value-mover {
+                    &:after {
+                        
+                        border-top: 7px solid transparent;
+                        border-left: 0;
+                        border-right: 10px solid rgba(0,0,0,.5);
+                        border-bottom: 7px solid transparent;
+
+                        left: unset;
+                        right: 100%;
+                    }
+                }
+            }
+        }
+    }
+    &.animate {
+        .slider-color-filler, .slider-color-filler-closed {
+            @include transition(width .3s);
+        }
+        .slider-handle {
+            @include transition(left .3s);
+        }
+    }
     .slider-path {
         width: calc(100% - 34px);
         position: relative;
@@ -40,6 +95,7 @@ body {
     }
     .slider-color-filler, .slider-pseudo-path {
         background-color: $slider-filler-color;
+        width: 0;
         height: 4px;
         border-radius: 4px;
         margin-top: -2px;
@@ -52,6 +108,7 @@ body {
     }
     .slider-color-filler-closed {
         background-color: $slider-filler-color;
+        width: 0;
         height: 100%;
         position: absolute;
         top: 0;
@@ -68,6 +125,7 @@ body {
         border-radius: $handle-width + $handle-padding;
         
         position: relative;
+        left: 0;
         z-index: 1;
 
         cursor: pointer;
@@ -106,6 +164,10 @@ body {
         .slider-value {
             position: relative;
             z-index: 3;
+            .value-mover {
+                padding: 2px;
+                display: inline;
+            }
         }
     }
 }
