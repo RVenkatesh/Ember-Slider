@@ -7,11 +7,5 @@ export default Ember.Component.extend({
   onMove() {},
   panStart() {
     this.get('onStart')(event);
-  },
-  panMove(event) {
-    this.get('onMove')(event);
-  },
-  panEnd() {
-    this.get('onEnd')(event);
   }
 });

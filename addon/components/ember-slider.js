@@ -30,31 +30,19 @@ export default Ember.Component.extend(RecognizerMixin, {
     this.set('_LOCKED_HANDLE_POSITION', handle_left);
   },
 
-  // tap(event) {
-  //   let gesture = event.originalEvent.gesture.srcEvent.offsetX;
-  // },
-
-  panStart() {
-    this.lockHandlePosition();
-  },
-  panMove(event) {
-    if (!this.get('panWithHandle')) {
-      return;
-    }
-    let gesture = event.originalEvent.gesture;
+  moveHandle(positionInPX) {
     let {min, 
       max, 
       SLIDER_PATH, 
-      _LOCKED_HANDLE_POSITION,
       SLIDER_HANDLE,
       SLIDER_COLOR_FILLER,
       SLIDER_COLOR_FILLER_CLOSED
-    } = this.getProperties('min', 'max', 'SLIDER_PATH', '_LOCKED_HANDLE_POSITION', 'SLIDER_HANDLE', 'SLIDER_COLOR_FILLER', 'SLIDER_COLOR_FILLER_CLOSED');
+    } = this.getProperties('min', 'max', 'SLIDER_PATH', 'SLIDER_HANDLE', 'SLIDER_COLOR_FILLER', 'SLIDER_COLOR_FILLER_CLOSED');
     
     let difference  = max - min;
     let path_width = SLIDER_PATH.width();
 
-    let movedPercentage = ((gesture.deltaX + _LOCKED_HANDLE_POSITION) / path_width) * 100;
+    let movedPercentage = (positionInPX / path_width) * 100;
 
     // Make sure the percentage value stays within its boundaries
     if (movedPercentage <= 0) {
@@ -69,6 +57,25 @@ export default Ember.Component.extend(RecognizerMixin, {
     SLIDER_HANDLE.css('left', movedPercentage + '%');
     SLIDER_COLOR_FILLER.css('width', movedPercentage + '%');
     SLIDER_COLOR_FILLER_CLOSED.css('width', `calc(${movedPercentage}% - 15px)`);
+  },
+
+  tap(event) {
+    let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
+    let sliderPathLeft = this.get('SLIDER_PATH').position().left;
+    // console.log(event);
+    this.moveHandle(tapPosition - sliderPathLeft);
+  },
+
+  panStart() {
+    this.lockHandlePosition();
+  },
+  panMove(event) {
+    if (!this.get('panWithHandle')) {
+      return;
+    }
+    let gesture = event.originalEvent.gesture;
+    let _LOCKED_HANDLE_POSITION = this.get('_LOCKED_HANDLE_POSITION');
+    this.moveHandle(_LOCKED_HANDLE_POSITION + gesture.deltaX);
   },
   panEnd() {
     this.lockHandlePosition();

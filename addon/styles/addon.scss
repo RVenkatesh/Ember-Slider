@@ -36,6 +36,7 @@ body {
         width: calc(100% - 34px);
         position: relative;
         left: 15px;
+        cursor: pointer;
     }
     .slider-color-filler, .slider-pseudo-path {
         background-color: $slider-filler-color;
