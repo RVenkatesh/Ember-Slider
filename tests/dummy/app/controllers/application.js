@@ -1,10 +1,15 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import Object from '@ember/object';
 
-export default Ember.Controller.extend({
-    options: {
+export default Controller.extend({
+    options: Object.create({
         type: {
             closed: true
         },
-        noValue: false
-    }
+        noValue: false,
+        range: {
+            min: 10,
+            max: 20
+        }
+    })
 });

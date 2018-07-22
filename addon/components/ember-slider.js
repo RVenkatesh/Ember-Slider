@@ -1,14 +1,15 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/ember-slider';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 
-export default Ember.Component.extend(RecognizerMixin, {
+export default Component.extend(RecognizerMixin, {
   layout,
   classNames: 'ember-slider',
   recognizers: 'pan tap',
   classNameBindings: ['config.type.closed', 'config.noValue', 'sliding', 'leftClosing', 'rightClosing', 'animate'],
-  config: {},
-  value: 0,
+  config: null,
+  initialValue: null,
+  value: null,
   onChange() {},
   init() {
     this._super(...arguments);
@@ -25,6 +26,7 @@ export default Ember.Component.extend(RecognizerMixin, {
     this.set('SLIDER_HANDLE', this.$('.slider-handle'));
     this.set('SLIDER_COLOR_FILLER', this.$('.slider-color-filler'));
     this.set('SLIDER_COLOR_FILLER_CLOSED', this.$('.slider-color-filler-closed'));
+    this.moveToInitialValue();
   },
   lockHandlePosition() {
     let handle_left = parseInt(this.get('SLIDER_HANDLE').position().left);
@@ -65,6 +67,20 @@ export default Ember.Component.extend(RecognizerMixin, {
     SLIDER_COLOR_FILLER.css('width', movedPercentage + '%');
     SLIDER_COLOR_FILLER_CLOSED.css('width', `calc(${movedPercentage}% - 15px)`);
     this.addClosenessClass(positionInPX, pathWidth);
+  },
+
+  moveToInitialValue() {
+    // Right now this whole function looks ridiculous, 
+    // because value to percentage and percentage to value conversion happens
+    // Change this when the time comes
+    let {initialValue, min, max, SLIDER_PATH} = this.getProperties('initialValue', 'min', 'max', 'SLIDER_PATH');
+    let difference = max - min;
+    let pathWidth = SLIDER_PATH.width();
+    initialValue = initialValue === null ? min : initialValue;
+    let percentage = (initialValue - min) * 100 / difference;
+    let positionInPX = percentage * pathWidth / 100;
+
+    this.moveHandle(positionInPX);
   },
 
   // Add classes to the slider based on whether the handle is closer to left end or right end

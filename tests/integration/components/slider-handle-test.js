@@ -1,25 +1,26 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('slider-handle', 'Integration | Component | slider handle', {
-  integration: true
-});
+module('Integration | Component | slider handle', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
+  test('handle renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    await render(hbs`{{slider-handle}}`);
 
-  this.render(hbs`{{slider-handle}}`);
+    assert.equal(this.element.textContent.trim(), '');
+  });
 
-  assert.equal(this.$().text().trim(), '');
+  test('handle value set to 10', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-  // Template block usage:
-  this.render(hbs`
-    {{#slider-handle}}
-      template block text
-    {{/slider-handle}}
-  `);
+    await render(hbs`{{slider-handle value=10}}`);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('.slider-value')[0].textContent.trim(), '10');
+  });
 });
