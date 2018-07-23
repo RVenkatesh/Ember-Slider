@@ -1,6 +1,6 @@
 # ember-slider
 
-This slider is built as an addon for ember applications. Follow the instructions in the [demo](/#demo) section to see it in action.
+This slider is built as an addon for ember applications. Follow the instructions in the [demo](https://github.com/RVenkatesh/Ember-slider#demo) section to see it in action.
 
 ## Demo
 
@@ -35,7 +35,7 @@ Add configuration options if necessary in the corresponding route's controller o
     }
 }
 ```
-Refer [Configurations options](/#configuration-options) section for details about the different options available.
+Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available.
 
 ## Parameters
 
@@ -44,7 +44,7 @@ The component provides different parameters as mentioned below.
 | Params | Default value | Description |
 | --- | --- | --- |
 | initialValue | ```0``` | To load the slider with value other than min value. |
-| config | ```null``` | General settings for the slider. Refer [Configurations options](/#configuration-options) section for details about the different options available. |
+| config | ```null``` | General settings for the slider. Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available. |
 
 ##### Callback parameters
 
