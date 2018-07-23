@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-slider',
+  name: '@love-open-source/ember-slider',
   /*
     Without this, Ember CLI will throw an error when trying to serve the dummy test application or building distributables:
 
