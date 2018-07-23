@@ -14,6 +14,10 @@ This slider is built as an addon for ember applications. Follow the instructions
 ```
 npm install @love-open-source/ember-slider --save
 ```
+or
+```
+ember install @love-open-source/ember-slider
+```
 ## How to use
 Include the ember slider component in the template like any other normal ember component
 ```

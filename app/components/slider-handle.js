@@ -1,1 +1,1 @@
-export { default } from 'ember-slider/components/slider-handle';
+export { default } from '@love-open-source/ember-slider/components/slider-handle';

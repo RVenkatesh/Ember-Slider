@@ -99,7 +99,7 @@ export default Component.extend(RecognizerMixin, {
 
   tap(event) {
     let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
-    let sliderPathLeft = this.get('SLIDER_PATH').position().left;
+    let sliderPathLeft = this.get('SLIDER_PATH').offset().left;
 
     this.moveHandle(tapPosition - sliderPathLeft, true);
   },

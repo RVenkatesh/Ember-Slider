@@ -102,6 +102,7 @@ body {
         margin-top: -2px;
         position: absolute;
         top: 50%;
+        cursor: pointer;
     }
     .slider-pseudo-path {
         background-color: $slider-path-color;
@@ -115,6 +116,7 @@ body {
         top: 0;
         left: 0;
         display: none;
+        cursor: pointer;
     }
     .slider-handle {
         @include transform(translateX(-15px));
