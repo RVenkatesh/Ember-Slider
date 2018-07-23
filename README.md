@@ -12,7 +12,7 @@ This slider is built as an addon for ember applications. Follow the instructions
 
 ## Installation
 ```
-ember install ember-slider
+npm install @love-open-source/ember-slider --save
 ```
 ## How to use
 Include the ember slider component in the template like any other normal ember component
