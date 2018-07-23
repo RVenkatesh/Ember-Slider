@@ -8,8 +8,22 @@ export default Controller.extend({
         },
         noValue: false,
         range: {
-            min: 10,
-            max: 20
+            min: 0,
+            max: 100
         }
-    })
+    }),
+    actions: {
+        toggleValueDisplay() {
+            this.toggleProperty('options.noValue');
+        },
+        addActiveClass() {
+            event.target.classList.add('active');
+        },
+        removeActiveClass() {
+            event.target.classList.remove('active');
+        },
+        toggleSliderType() {
+            this.toggleProperty('options.type.closed');
+        },
+    }
 });

@@ -35,13 +35,17 @@ Refer [Configurations options](/#configuration-options) section for details abou
 
 ## Parameters
 
-Apart from configuration options, the component also provides callback functions as mentioned below.
+The component provides different parameters as mentioned below.
 
 | Params | Default value | Description |
 | --- | --- | --- |
 | initialValue | ```0``` | To load the slider with value other than min value. |
+| config | ```null``` | General settings for the slider. Refer [Configurations options](/#configuration-options) section for details about the different options available. |
 
 ##### Callback parameters
+
+Apart the above parameters, the following are the callback function available for the slider.
+
 | Function | Params | Description |
 | --- | --- | --- |
 | onChange | ```( oldValue, newValue )``` | This is called when the value of the slider changes. |

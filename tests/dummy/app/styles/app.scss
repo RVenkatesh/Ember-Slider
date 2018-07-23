@@ -1,0 +1,26 @@
+@import "compass";
+
+.demo-button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    &:hover {
+        box-shadow: 1px 1px 1px rgba(0,0,0, .2);
+    }
+    &.active {
+        @include transform(scale(0.99));
+        box-shadow: none;
+    }
+}
+
+.slider-container {
+    width: 500px;
+    margin: 10px 0;
+}
+
+.code, .preview {
+    float: left;
+    max-width: 45%;
+    margin: 1%;
+}
