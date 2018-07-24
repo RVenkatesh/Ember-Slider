@@ -63,10 +63,11 @@ export default Component.extend(RecognizerMixin, {
     
     this.get('onChange')(this.get('value'), newValue);
     this.set('value', newValue);
-    SLIDER_HANDLE.css('left', movedPercentage + '%');
-    SLIDER_COLOR_FILLER.css('width', movedPercentage + '%');
-    SLIDER_COLOR_FILLER_CLOSED.css('width', `calc(${movedPercentage}% - 15px)`);
-    this.addClosenessClass(positionInPX, pathWidth);
+    let percentageString = movedPercentage + '%';
+    SLIDER_HANDLE.css('left', percentageString);
+    SLIDER_COLOR_FILLER.css('width', percentageString);
+    SLIDER_COLOR_FILLER_CLOSED.css('width', percentageString);
+    // this.addClosenessClass(positionInPX, pathWidth);
   },
 
   moveToInitialValue() {
@@ -84,18 +85,18 @@ export default Component.extend(RecognizerMixin, {
   },
 
   // Add classes to the slider based on whether the handle is closer to left end or right end
-  addClosenessClass(positionInPX, pathWidth) {
-    if (positionInPX < 50) {
-      this.set('leftClosing', true);
-      this.set('rightClosing', false);
-    } else if (pathWidth - positionInPX < 50) {
-      this.set('rightClosing', true);
-      this.set('leftClosing', false);
-    } else {
-      this.set('rightClosing', false);
-      this.set('leftClosing', false);
-    }
-  },
+  // addClosenessClass(positionInPX, pathWidth) {
+  //   if (positionInPX < 50) {
+  //     this.set('leftClosing', true);
+  //     this.set('rightClosing', false);
+  //   } else if (pathWidth - positionInPX < 50) {
+  //     this.set('rightClosing', true);
+  //     this.set('leftClosing', false);
+  //   } else {
+  //     this.set('rightClosing', false);
+  //     this.set('leftClosing', false);
+  //   }
+  // },
 
   tap(event) {
     let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
