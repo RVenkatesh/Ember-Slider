@@ -6,7 +6,7 @@ export default Component.extend(RecognizerMixin, {
   layout,
   classNames: 'ember-slider',
   recognizers: 'pan tap',
-  classNameBindings: ['config.type.closed', 'config.noValue', 'sliding', 'leftClosing', 'rightClosing', 'animate'],
+  classNameBindings: ['config.type', 'config.hideValue', 'sliding', 'leftClosing', 'rightClosing', 'animate'],
   config: null,
   initialValue: null,
   value: null,
@@ -28,6 +28,9 @@ export default Component.extend(RecognizerMixin, {
     this.set('SLIDER_COLOR_FILLER_CLOSED', this.$('.slider-color-filler-closed'));
     this.moveToInitialValue();
   },
+  // Saves the handle position at present to the component variable
+  // and then reuse it to during the events like sliding to easily
+  // work with the state of the slider before the event started
   lockHandlePosition() {
     let handle_left = parseInt(this.get('SLIDER_HANDLE').position().left);
     this.set('_LOCKED_HANDLE_POSITION', handle_left);

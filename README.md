@@ -1,4 +1,4 @@
-# ember-slider
+# ember-slider [![GitHub version](https://badge.fury.io/gh/RVenkatesh%2Fember-slider.svg)](https://badge.fury.io/gh/RVenkatesh%2Fember-slider) [![npm version](https://badge.fury.io/js/%40love-open-source%2Fember-slider.svg)](https://badge.fury.io/js/%40love-open-source%2Fember-slider)
 
 This slider is built as an addon for ember applications. Follow the instructions in the [demo](https://github.com/RVenkatesh/Ember-slider#demo) section to see it in action.
 
@@ -26,9 +26,7 @@ Include the ember slider component in the template like any other normal ember c
 Add configuration options if necessary in the corresponding route's controller or component's object
 ```
 {
-    type: {
-        closed: true
-    },
+    type: 'closed',
     range: {
         min: 0,
         max: 100
@@ -58,6 +56,6 @@ Apart the above parameters, the following are the callback function available fo
 
 | Option | Default | Description |
 | --- | --- | --- |
-| type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed' |
+| type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed'. |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
-| noValue | false | Boolean to show or hide the display of value in the slider. ```true``` hides the value. |
+| hideValue | false | Boolean to show or hide the display of value in the slider. ```true``` hides the value. |

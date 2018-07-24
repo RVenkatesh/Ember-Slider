@@ -14,7 +14,7 @@ body {
 
     @include box-sizing();
     position: relative;
-    &.no-value {
+    &.hide-value {
         .slider-value {
             display: none;
         }

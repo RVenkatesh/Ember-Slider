@@ -3,10 +3,8 @@ import Object from '@ember/object';
 
 export default Controller.extend({
     options: Object.create({
-        type: {
-            closed: true
-        },
-        noValue: false,
+        type: 'closed',
+        hideValue: false,
         range: {
             min: 0,
             max: 100
@@ -14,7 +12,7 @@ export default Controller.extend({
     }),
     actions: {
         toggleValueDisplay() {
-            this.toggleProperty('options.noValue');
+            this.toggleProperty('options.hideValue');
         },
         addActiveClass() {
             event.target.classList.add('active');
@@ -23,7 +21,11 @@ export default Controller.extend({
             event.target.classList.remove('active');
         },
         toggleSliderType() {
-            this.toggleProperty('options.type.closed');
+            if (this.get('options.type') === 'closed') {
+                this.set('options.type', 'sleek');
+            } else {
+                this.set('options.type', 'closed');
+            }
         },
     }
 });
