@@ -36,55 +36,69 @@ export default Component.extend(RecognizerMixin, {
     this.set('_LOCKED_HANDLE_POSITION', handle_left);
   },
 
-  moveHandle(positionInPX, animate) {
+  // WARNING: DO NOT TOUCH THIS UNLESS NECESSARY
+  // This is the core function of this component which takes care of moving the handle
+  // and updating the value based on the required movement percentage
+  moveToPercentage(percentage, animate) {
     if (animate) {
       this.set('animate', true);
     } else {
       this.set('animate', false);
     }
-    let {min, 
-      max, 
-      SLIDER_PATH, 
-      SLIDER_HANDLE,
+
+    let { min, 
+      max, SLIDER_HANDLE,
       SLIDER_COLOR_FILLER,
       SLIDER_COLOR_FILLER_CLOSED
-    } = this.getProperties('min', 'max', 'SLIDER_PATH', 'SLIDER_HANDLE', 'SLIDER_COLOR_FILLER', 'SLIDER_COLOR_FILLER_CLOSED');
+    } = this.getProperties('min', 'max','SLIDER_HANDLE', 'SLIDER_COLOR_FILLER', 'SLIDER_COLOR_FILLER_CLOSED');
     
     let difference  = max - min;
-    let pathWidth = SLIDER_PATH.width();
-
-    let movedPercentage = (positionInPX / pathWidth) * 100;
-
-    // Make sure the percentage value stays within its boundaries
-    if (movedPercentage <= 0) {
-      movedPercentage = 0;
-    } else if (movedPercentage >= 100) {
-      movedPercentage = 100;
+     // Make sure the percentage value stays within its boundaries
+    if (percentage <= 0) {
+      percentage = 0;
+    } else if (percentage >= 100) {
+      percentage = 100;
     }
 
-    let newValue = Math.round(min + (movedPercentage * difference) / 100);
-    
-    this.get('onChange')(this.get('value'), newValue);
+    // Update the value based on the percentage
+    let newValue = Math.round(min + (percentage * difference) / 100);
     this.set('value', newValue);
-    let percentageString = movedPercentage + '%';
+
+    // Move the handle to the corresponding percentage
+    let percentageString = percentage + '%';
     SLIDER_HANDLE.css('left', percentageString);
     SLIDER_COLOR_FILLER.css('width', percentageString);
     SLIDER_COLOR_FILLER_CLOSED.css('width', percentageString);
-    // this.addClosenessClass(positionInPX, pathWidth);
   },
 
-  moveToInitialValue() {
-    // Right now this whole function looks ridiculous, 
-    // because value to percentage and percentage to value conversion happens
-    // Change this when the time comes
-    let {initialValue, min, max, SLIDER_PATH} = this.getProperties('initialValue', 'min', 'max', 'SLIDER_PATH');
-    let difference = max - min;
+  // Move the handle to a given px value
+  // Assumption: The pixel value is relative to the slider div
+  // which means it is the distance in px from the left most point of the slider
+  moveToPX(positionInPX, animate) {
+    let SLIDER_PATH = this.get( 'SLIDER_PATH');
     let pathWidth = SLIDER_PATH.width();
-    initialValue = initialValue === null ? min : initialValue;
-    let percentage = (initialValue - min) * 100 / difference;
-    let positionInPX = percentage * pathWidth / 100;
+    // Calculate the percentage corresponding to the position in px
+    let movedPercentage = (positionInPX / pathWidth) * 100;
 
-    this.moveHandle(positionInPX);
+    this.moveToPercentage(movedPercentage, animate);
+  },
+
+  // Move the handle based on the given slider value
+  moveToValue(value) {
+    let {min, max} = this.getProperties('min', 'max');
+    let difference = max - min;
+    // Calculate the percentage corresponding to the value of the slider
+    let percentage = (value - min) * 100 / difference;
+
+    this.moveToPercentage(percentage);
+  },
+
+  // Move the slider to the initialValue passed to the component
+  moveToInitialValue() {
+    let {initialValue, min} = this.getProperties('initialValue', 'min');
+    // Make sure the initial value is properly set otherwise move to the min
+    let value = typeof initialValue !== 'number' ? min : initialValue;
+    this.moveToValue(value);
   },
 
   // Add classes to the slider based on whether the handle is closer to left end or right end
@@ -104,8 +118,11 @@ export default Component.extend(RecognizerMixin, {
   tap(event) {
     let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
     let sliderPathLeft = this.get('SLIDER_PATH').offset().left;
+    // Get old value to be passed to onchange event
+    let oldValue = this.get('value');
 
-    this.moveHandle(tapPosition - sliderPathLeft, true);
+    this.moveToPX(tapPosition - sliderPathLeft, true);
+    this.get('onChange')(oldValue, this.get('value'));
   },
 
   panStart() {
@@ -116,8 +133,15 @@ export default Component.extend(RecognizerMixin, {
       return;
     }
     let gesture = event.originalEvent.gesture;
+    // Since hammer through ember-gestures is only giving us the total movement 
+    // for the current event, we need to take only the handle position before the 
+    // event started.
     let _LOCKED_HANDLE_POSITION = this.get('_LOCKED_HANDLE_POSITION');
-    this.moveHandle(_LOCKED_HANDLE_POSITION + gesture.deltaX);
+    // Get old value to be passed to onchange event
+    let oldValue = this.get('value');
+
+    this.moveToPX(_LOCKED_HANDLE_POSITION + gesture.deltaX);
+    this.get('onChange')(oldValue, this.get('value'));
   },
   panEnd() {
     this.lockHandlePosition();
@@ -125,6 +149,8 @@ export default Component.extend(RecognizerMixin, {
   },
   actions: {
     handleMoveStart() {
+      // Make this boolean 'true', in order to make sure we are capturing pan event
+      // which originated from the handle
       this.set('sliding', true);
     }
   }

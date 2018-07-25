@@ -26,6 +26,6 @@ export default Controller.extend({
             } else {
                 this.set('options.type', 'closed');
             }
-        },
+        }
     }
 });
