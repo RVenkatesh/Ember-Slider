@@ -4,7 +4,10 @@
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon",
-    "slider"
+    "ember-slider",
+    "slider",
+    "likert",
+    "likert-scale"
   ],
   "license": "MIT",
   "author": "Venkatesh",
@@ -47,6 +50,7 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "~3.3.0",
     "ember-source-channel-url": "^1.0.1",
+    "ember-truth-helpers": "^2.0.0",
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",

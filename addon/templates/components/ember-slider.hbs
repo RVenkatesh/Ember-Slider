@@ -9,3 +9,8 @@
         <div class="slider-color-filler-closed"></div>
     </div>
 </div>
+<div class="likert-points">
+    {{#each likertPoints as |point|}}
+        <div class="likert-point {{if (lte point.left _percentage) 'active'}}" style="left: {{point.left}}%;"></div>
+    {{/each}}
+</div>

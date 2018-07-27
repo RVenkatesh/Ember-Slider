@@ -1,12 +1,25 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
 import layout from '../templates/components/ember-slider';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
+import { next } from '@ember/runloop';
+
+const LIKERT_DEFAULT = 3;
 
 export default Component.extend(RecognizerMixin, {
   layout,
   classNames: 'ember-slider',
   recognizers: 'pan tap',
-  classNameBindings: ['config.type', 'config.hideValue', 'sliding', 'leftClosing', 'rightClosing', 'animate'],
+  classNameBindings: [
+    'config.type', 
+    'config.hideValue', 
+    'sliding', 
+    'leftClosing', 
+    'rightClosing', 
+    'animate', 
+    'likertEnabled'
+  ],
+  likertPoints: A(),
   config: null,
   initialValue: null,
   value: null,
@@ -14,9 +27,14 @@ export default Component.extend(RecognizerMixin, {
   init() {
     this._super(...arguments);
 
-    // Copy config for easier use
-    this.set('min', this.get('config.range.min') || 0);
-    this.set('max', this.get('config.range.max') || 100);
+    if (this.get('config.likert.enabled')) {
+      this.set('likertEnabled', true);
+      this.generateLikertPoints();
+    } else {
+      // Copy config for easier use
+      this.set('min', this.get('config.range.min') || 0);
+      this.set('max', this.get('config.range.max') || 100);
+    }
   },
   didInsertElement() {
     this._super(...arguments);
@@ -64,6 +82,8 @@ export default Component.extend(RecognizerMixin, {
     let newValue = Math.round(min + (percentage * difference) / 100);
     this.set('value', newValue);
 
+    // Store percentage for easy usage
+    this.set('_percentage', percentage);
     // Move the handle to the corresponding percentage
     let percentageString = percentage + '%';
     SLIDER_HANDLE.css('left', percentageString);
@@ -84,21 +104,64 @@ export default Component.extend(RecognizerMixin, {
   },
 
   // Move the handle based on the given slider value
-  moveToValue(value) {
+  // If the slider is likert, then the automatically move to nearest likert point
+  moveToValue(value, animate) {
     let {min, max} = this.getProperties('min', 'max');
     let difference = max - min;
     // Calculate the percentage corresponding to the value of the slider
     let percentage = (value - min) * 100 / difference;
 
-    this.moveToPercentage(percentage);
+    if (this.get('likertEnabled')) {
+      this.moveToLikertByPercentage(percentage, animate);
+    } else {
+      this.moveToPercentage(percentage, animate);
+    }
   },
 
   // Move the slider to the initialValue passed to the component
-  moveToInitialValue() {
+  moveToInitialValue(animate) {
     let {initialValue, min} = this.getProperties('initialValue', 'min');
     // Make sure the initial value is properly set otherwise move to the min
     let value = typeof initialValue !== 'number' ? min : initialValue;
-    this.moveToValue(value);
+    this.moveToValue(value, animate);
+  },
+
+  moveToLikertPointFromPX(positionInPX, animate) {
+    let SLIDER_PATH = this.get('SLIDER_PATH');
+    let pathWidth = SLIDER_PATH.width(),
+      // Calculate the percentage corresponding to the position in px
+      movedPercentage = (positionInPX / pathWidth) * 100;
+    
+    this.moveToLikertByPercentage(movedPercentage, animate);
+  },
+
+  moveToLikertByPercentage(percentage, animate) {
+    let likertPoints = this.get('likertPoints'),
+      totalPoints = likertPoints.length,
+      distance = 100 / (totalPoints - 1),
+      percentageToMove = Math.round(percentage / distance) * distance;
+
+      // Get only the percentage in multiples of distance to make sure
+      // the handle always lands in one of the likert points
+      // Move always to the nearest likert point
+      this.moveToPercentage(percentageToMove, animate);
+  },
+
+  generateLikertPoints() {
+    let totalPoints = this.get('config.likert.points') || LIKERT_DEFAULT,
+      labels = this.get('likertLabels'),
+      points = this.get('likertPoints'),
+      distance = 100 / (totalPoints - 1);
+    this.set('min', 0);
+    this.set('max', totalPoints - 1);
+    for(let counter = 0; counter < totalPoints; counter++) {
+      // Based on the distance between likert points, generate data for likert points
+      // with amount of 'left' value to given to each of them
+      points.pushObject({
+        left: counter * distance,
+        label: labels ? labels[counter] || '': ''
+      });
+    }
   },
 
   // Add classes to the slider based on whether the handle is closer to left end or right end
@@ -120,8 +183,11 @@ export default Component.extend(RecognizerMixin, {
     let sliderPathLeft = this.get('SLIDER_PATH').offset().left;
     // Get old value to be passed to onchange event
     let oldValue = this.get('value');
-
-    this.moveToPX(tapPosition - sliderPathLeft, true);
+    if (this.get('likertEnabled')) {
+      this.moveToLikertPointFromPX(tapPosition - sliderPathLeft, true);
+    } else {
+      this.moveToPX(tapPosition - sliderPathLeft, true);
+    }
     this.get('onChange')(oldValue, this.get('value'));
   },
 
@@ -144,8 +210,16 @@ export default Component.extend(RecognizerMixin, {
     this.get('onChange')(oldValue, this.get('value'));
   },
   panEnd() {
-    this.lockHandlePosition();
+    let sliding = this.get('sliding');
     this.set('sliding', false);
+    // Do this to get 'sliding' class properly removed before adding animate class
+    // since both these are not designed in a way to work together
+    next(this, function() {
+      if (this.get('likertEnabled') && sliding) {
+        this.moveToValue(this.get('value'), true);
+      }
+    });
+    this.lockHandlePosition();
   },
   actions: {
     handleMoveStart() {
