@@ -11,8 +11,10 @@ body {
     $slider-handle-color: #eee;
     $handle-width: 30px;
     $handle-padding: 4px;
+    $base-font-size: .9em;
 
     @include box-sizing();
+    font-size: $base-font-size;
     position: relative;
     &.hide-value {
         .slider-value {
@@ -68,6 +70,7 @@ body {
         cursor: pointer;
     }
     &.likert-enabled {
+        margin-bottom: 70px;
         .likert-point {
             cursor: pointer;
         }
@@ -136,7 +139,7 @@ body {
 
         &:before {
             content: '';
-            width: $handle-width * 5;
+            width: $handle-width * 3;
             height: 100%;
             position: absolute;
             top: 0;
@@ -144,7 +147,7 @@ body {
         }
         &:after {
             content: '';
-            width: $handle-width * 5;
+            width: $handle-width * 3;
             height: 100%;
             position: absolute;
             top: 0;
@@ -181,6 +184,7 @@ body {
         left: 0;
         top: 0;
         .likert-point {
+            text-align: center;
             background: $slider-handle-color;
             height: $handle-width + $handle-padding;
             width: $handle-width + $handle-padding;
@@ -191,8 +195,25 @@ body {
             &:nth-child(1) {
                 margin-left: 0;
             }
+            &:nth-child(odd) {
+                .likert-label {
+                    top: calc(100% + 10px);
+                }
+            }
+            &:nth-child(even) {
+                .likert-label {
+                    bottom: calc(100% + 10px);
+                }
+            }
             &.active {
                 background: $slider-filler-color;
+            }
+            .likert-label {
+                @include transform(translateX(-50%));
+                font-size: $base-font-size - .1em;
+                
+                position: absolute;
+                display: inline-block;
             }
         }
     }

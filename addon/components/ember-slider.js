@@ -138,7 +138,7 @@ export default Component.extend(RecognizerMixin, {
   moveToLikertByPercentage(percentage, animate) {
     let likertPoints = this.get('likertPoints'),
       totalPoints = likertPoints.length,
-      distance = 100 / (totalPoints - 1),
+      distance = this.get('likertDistance'),
       percentageToMove = Math.round(percentage / distance) * distance;
 
       // Get only the percentage in multiples of distance to make sure
@@ -149,9 +149,10 @@ export default Component.extend(RecognizerMixin, {
 
   generateLikertPoints() {
     let totalPoints = this.get('config.likert.points') || LIKERT_DEFAULT,
-      labels = this.get('likertLabels'),
+      labels = this.get('config.likert.labels'),
       points = this.get('likertPoints'),
       distance = 100 / (totalPoints - 1);
+    this.set('likertDistance', distance);
     this.set('min', 0);
     this.set('max', totalPoints - 1);
     for(let counter = 0; counter < totalPoints; counter++) {

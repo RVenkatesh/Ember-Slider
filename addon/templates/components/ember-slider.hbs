@@ -11,6 +11,9 @@
 </div>
 <div class="likert-points">
     {{#each likertPoints as |point|}}
-        <div class="likert-point {{if (lte point.left _percentage) 'active'}}" style="left: {{point.left}}%;"></div>
+        <div class="likert-point {{if (lte point.left _percentage) 'active'}}" 
+            style="left: {{point.left}}%;">
+            <div class="likert-label" style="min-width: {{mult likertDistance 3}}px;">{{point.label}}</div>
+        </div>
     {{/each}}
 </div>

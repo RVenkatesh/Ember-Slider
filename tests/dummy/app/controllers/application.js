@@ -8,7 +8,18 @@ export default Controller.extend({
         range: {
             min: 0,
             max: 100
-        }
+        },
+        // likert: {
+        //     enabled: true,
+        //     points: 5,
+        //     labels: [
+        //         'Very poor ',
+        //         'Poor',
+        //         'Average',
+        //         'Good',
+        //         'Very good'
+        //     ]
+        // }
     }),
     actions: {
         toggleValueDisplay() {
