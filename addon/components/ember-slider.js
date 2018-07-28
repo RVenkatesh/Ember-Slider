@@ -136,9 +136,7 @@ export default Component.extend(RecognizerMixin, {
   },
 
   moveToLikertByPercentage(percentage, animate) {
-    let likertPoints = this.get('likertPoints'),
-      totalPoints = likertPoints.length,
-      distance = this.get('likertDistance'),
+    let distance = this.get('likertDistance'),
       percentageToMove = Math.round(percentage / distance) * distance;
 
       // Get only the percentage in multiples of distance to make sure
