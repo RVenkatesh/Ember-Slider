@@ -59,7 +59,7 @@ Apart the above parameters, the following are the callback function available fo
 | type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed'. |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
 | hideValue | false | Boolean to show or hide the display of value in the slider. ```true``` hides the value. |
-| likert | {} | To enable slider as likert scale. Refer section  |
+| likert | {} | To enable slider as likert scale. Refer section [Likert scale options](https://github.com/RVenkatesh/Ember-Slider/tree/likert-scale-support#likert-scale-options) to know more about likert configuration. |
 
 ##### Likert scale options
 The 'likert' configuration option allows the slider to function as likert scale. It can be enabled by passing the following to 'config' option 
@@ -75,5 +75,6 @@ Just enabling likert option would provide a 3-point likert scale slider with val
 
 | Option | Default | Description |
 | --- | --- | --- |
+| enabled | false | Enable or disable likert scale |
 | points | 3 | Number of likert points to be shown. As of now ```ember-slider``` supports 3, 5 and 7 points. |
 | labels | [] | Label text to be displayed under each likert point of the slider. If nothing has to be displayed, pass ```null``` |
