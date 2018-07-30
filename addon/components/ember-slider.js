@@ -19,7 +19,7 @@ export default Component.extend(RecognizerMixin, {
     'animate', 
     'likertEnabled'
   ],
-  likertPoints: A(),
+  likertPoints: null,
   config: null,
   initialValue: null,
   value: null,
@@ -148,7 +148,7 @@ export default Component.extend(RecognizerMixin, {
   generateLikertPoints() {
     let totalPoints = this.get('config.likert.points') || LIKERT_DEFAULT,
       labels = this.get('config.likert.labels'),
-      points = this.get('likertPoints'),
+      points = [],
       distance = 100 / (totalPoints - 1);
     this.set('likertDistance', distance);
     this.set('min', 0);
@@ -156,11 +156,12 @@ export default Component.extend(RecognizerMixin, {
     for(let counter = 0; counter < totalPoints; counter++) {
       // Based on the distance between likert points, generate data for likert points
       // with amount of 'left' value to given to each of them
-      points.pushObject({
+      points.push({
         left: counter * distance,
         label: labels ? labels[counter] || '': ''
       });
     }
+    this.set('likertPoints', points);
   },
 
   // Add classes to the slider based on whether the handle is closer to left end or right end
