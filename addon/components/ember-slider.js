@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { A } from '@ember/array';
 import layout from '../templates/components/ember-slider';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 import { next } from '@ember/runloop';
