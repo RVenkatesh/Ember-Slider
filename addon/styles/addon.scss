@@ -16,7 +16,7 @@ body {
     @include box-sizing();
     font-size: $base-font-size;
     position: relative;
-    &.hide-value {
+    &.hide-value, &.no-value {
         .slider-value {
             display: none;
         }
