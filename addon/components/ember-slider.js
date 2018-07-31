@@ -11,6 +11,8 @@ export default Component.extend(RecognizerMixin, {
   recognizers: 'pan tap',
   classNameBindings: [
     'config.type', 
+    'config.type.closed', 
+    'config.noValue', 
     'config.hideValue', 
     'sliding', 
     'leftClosing', 
