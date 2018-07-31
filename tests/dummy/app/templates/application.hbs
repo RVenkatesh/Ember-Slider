@@ -1,30 +1,61 @@
 <h2 id="title">Ember slider demo</h2>
 This page provides an interface to look at the various slider options available.
-<h3>Basic 0 to 100 slider</h3>
-<div class="code">
-    <h5>Code</h5>
-    {{code-snippet name="basic-slider-options.js"}}
-    {{code-snippet name="basic-slider-options.hbs"}}
+<div class="demo basic-slider">
+    <h3>Basic 0 to 100 slider</h3>
+    <div class="code">
+        <h5>Code</h5>
+        {{code-snippet name="basic-slider-options.js"}}
+        {{code-snippet name="basic-slider-options.hbs"}}
+    </div>
+    <div class="preview">
+        <h5>Preview</h5>
+        <div class="slider-container">
+            {{ember-slider config=options}}
+        </div>
+        <p>This is a basic slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
+        <div 
+            class="demo-button" 
+            {{action 'toggleValueDisplay' options}} 
+            onmousedown={{action 'addActiveClass'}} 
+            onmouseup={{action 'removeActiveClass'}}>
+            Toggle value display
+        </div>
+        <div 
+            class="demo-button" 
+            {{action 'toggleSliderType' options}} 
+            onmousedown={{action 'addActiveClass'}} 
+            onmouseup={{action 'removeActiveClass'}}>
+            Toggle slider type
+        </div>
+    </div>
 </div>
-<div class="preview">
-    <h5>Preview</h5>
-    <div class="slider-container">
-        {{ember-slider config=options}}
+<div class="demo likert-slider">
+    <h3>5 point likert slider</h3>
+    <div class="code">
+        <h5>Code</h5>
+        {{code-snippet name="likert-slider-options.js"}}
+        {{code-snippet name="basic-slider-options.hbs"}}
     </div>
-    <p>This is a basic slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
-    <div 
-        class="demo-button" 
-        {{action 'toggleValueDisplay'}} 
-        onmousedown={{action 'addActiveClass'}} 
-        onmouseup={{action 'removeActiveClass'}}>
-        Toggle value display
-    </div>
-    <div 
-        class="demo-button" 
-        {{action 'toggleSliderType'}} 
-        onmousedown={{action 'addActiveClass'}} 
-        onmouseup={{action 'removeActiveClass'}}>
-        Toggle slider type
+    <div class="preview">
+        <h5>Preview</h5>
+        <div class="slider-container">
+            {{ember-slider config=likertOptions}}
+        </div>
+        <p>This is a 5 point scale likert slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
+        <div 
+            class="demo-button" 
+            {{action 'toggleValueDisplay' likertOptions}} 
+            onmousedown={{action 'addActiveClass'}} 
+            onmouseup={{action 'removeActiveClass'}}>
+            Toggle value display
+        </div>
+        <div 
+            class="demo-button" 
+            {{action 'toggleSliderType' likertOptions}} 
+            onmousedown={{action 'addActiveClass'}} 
+            onmouseup={{action 'removeActiveClass'}}>
+            Toggle slider type
+        </div>
     </div>
 </div>
 {{outlet}}
