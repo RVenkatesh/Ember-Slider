@@ -1,5 +1,15 @@
 @import "compass";
 
+.demo {
+    clear: both;
+}
+
+.code, .preview {
+    float: left;
+    width: 45%;
+    margin: 1%;
+}
+
 .demo-button {
     padding: 10px;
     border: 1px solid #ccc;
@@ -17,10 +27,4 @@
 .slider-container {
     width: 500px;
     margin: 10px 0;
-}
-
-.code, .preview {
-    float: left;
-    max-width: 45%;
-    margin: 1%;
 }

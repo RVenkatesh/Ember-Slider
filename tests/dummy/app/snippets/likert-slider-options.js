@@ -1,16 +1,10 @@
+// Controller file
 import Controller from '@ember/controller';
 import Object from '@ember/object';
 
 export default Controller.extend({
+    // config options to be passed to the slider component
     options: Object.create({
-        type: 'closed',
-        hideValue: false,
-        range: {
-            min: 0,
-            max: 100
-        }
-    }),
-    likertOptions: Object.create({
         // Likert scale ideally needs no value to be shown if labels are provided
         // hence configure 'hideValue' to true
         hideValue: true,
@@ -28,23 +22,5 @@ export default Controller.extend({
                 'Very good'
             ]
         }
-    }),
-    actions: {
-        toggleValueDisplay(options) {
-            options.toggleProperty('hideValue');
-        },
-        addActiveClass() {
-            event.target.classList.add('active');
-        },
-        removeActiveClass() {
-            event.target.classList.remove('active');
-        },
-        toggleSliderType(options) {
-            if (options.get('type') === 'closed') {
-                options.set('type', 'sleek');
-            } else {
-                options.set('type', 'closed');
-            }
-        }
-    }
+    })
 });
