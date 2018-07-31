@@ -78,3 +78,7 @@ Just enabling likert option would provide a 3-point likert scale slider with val
 | enabled | false | Enable or disable likert scale |
 | points | 3 | Number of likert points to be shown. As of now ```ember-slider``` supports 3, 5 and 7 points. |
 | labels | [] | Label text to be displayed under each likert point of the slider. If nothing has to be displayed, pass ```null``` |
+
+
+## Updating ember-slider
+If you are updating one version of ember slider to other, please check out the [Release notes](https://github.com/RVenkatesh/Ember-Slider/wiki/Release-notes) page for any breaking changes (which are usually rare). 
