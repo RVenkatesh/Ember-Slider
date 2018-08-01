@@ -36,6 +36,8 @@ matrix:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
 before_install:
+  - gem install sass --version "=3.4.24"
+  - gem install compass --version "=1.0.3"
   - npm config set spin false
   - npm install -g npm@4
   - npm --version
