@@ -56,12 +56,13 @@ Apart from the above parameters, following are the callback functions provided b
 ## Configuration options
 
 This is the different options available under 'config' parameter of the slider.
+
 | Option | Default value | Description |
 | --- | --- | --- |
 | type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed'. |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
 | hideValue | false | Boolean to show or hide the display of value in the slider. ```true``` hides the value. |
-| likert | {} | To enable slider as likert scale. Refer section [Likert scale options](https://github.com/RVenkatesh/Ember-Slider/tree/likert-scale-support#likert-scale-options) to know more about likert configuration. |
+| likert | {} | To enable slider as likert scale. Refer section [Likert scale options](https://github.com/RVenkatesh/Ember-Slider#likert-scale-options) to know more about likert configuration. |
 
 ##### Likert scale options
 The 'likert' configuration option allows the slider to function as likert scale. It can be enabled by passing the following to 'config' option 
