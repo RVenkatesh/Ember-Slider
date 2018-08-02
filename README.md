@@ -43,11 +43,11 @@ The component provides different parameters as mentioned below.
 | Params | Default value | Description |
 | --- | --- | --- |
 | initialValue | ```0``` | To load the slider with value other than min value. |
-| config | ```null``` | General settings for the slider liker min & max, likert and more. Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available. |
+| config | ```null``` | General settings for the slider like min & max, likert and more. Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available. |
 
 ##### Callback parameters
 
-Apart the above parameters, the following are the callback function available for the slider.
+Apart from the above parameters, following are the callback functions provided by the addon.
 
 | Function | Params | Description |
 | --- | --- | --- |
@@ -55,7 +55,8 @@ Apart the above parameters, the following are the callback function available fo
 
 ## Configuration options
 
-| Option | Default | Description |
+This is the different options available under 'config' parameter of the slider.
+| Option | Default value | Description |
 | --- | --- | --- |
 | type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed'. |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
@@ -72,7 +73,7 @@ The 'likert' configuration option allows the slider to function as likert scale.
 }
 ```
 
-Just enabling likert option would provide a 3-point likert scale slider with values ranging from 0 to 2. Likert scale can be customised by adding more settings inside likert. Following are the different likert config options available.
+Just enabling likert option would provide a 3-point likert scale slider with values ranging from 0 to 2. Likert scale can be customised by adding more settings inside likert. Following are the different likert configuration options available.
 
 | Option | Default | Description |
 | --- | --- | --- |
