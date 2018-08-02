@@ -18,6 +18,7 @@ or
 ```
 ember install @love-open-source/ember-slider
 ```
+Note: This addon uses [compass](http://compass-style.org/) for compiling the styles. If you are not using it already, please follow [this link](http://compass-style.org/install/) to install it before installing addon.
 ## How to use
 Include the ember slider component in the template like any other normal ember component
 ```
