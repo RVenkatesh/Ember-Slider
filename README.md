@@ -38,34 +38,35 @@ Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#config
 
 ## Parameters
 
-The component provides different parameters as mentioned below.
+The component provides different parameters as mentioned below. These can be used as ```{{ember-slider initialValue=50 config=options onChange=(action 'onChangeAction')}}```
 
 | Params | Default value | Description |
 | --- | --- | --- |
 | initialValue | ```0``` | To load the slider with value other than min value. |
-| config | ```null``` | General settings for the slider like min & max, likert and more. Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available. |
+| config | ```null``` | General settings for the slider like range, likert and more. Refer [Configurations options](https://github.com/RVenkatesh/Ember-slider#configuration-options) section for details about the different options available. |
 
 ##### Callback parameters
 
-Apart from the above parameters, following are the callback functions provided by the addon.
+Apart from the above parameters, following are the callbacks provided by the addon.
 
 | Function | Params | Description |
 | --- | --- | --- |
 | onChange | ```( oldValue, newValue )``` | This is called when the value of the slider changes. |
 
-## Configuration options
+## Options under _'config'_ options
 
-This is the different options available under 'config' parameter of the slider.
+These are the different options available under 'config' parameter of the slider.
 
 | Option | Default value | Description |
 | --- | --- | --- |
 | type | 'sleek' | Changes the look and feel of the slider. Currently it supports only 'sleek' and 'closed'. |
 | range | { min: 0, max: 100 } | This object can be used to change the min and max of the slider. This can be of following format. ```{ min: `min_value`, max: `max_value` }``` |
-| hideValue | false | Boolean to show or hide the display of value in the slider. ```true``` hides the value. |
-| likert | {} | To enable slider as likert scale. Refer section [Likert scale options](https://github.com/RVenkatesh/Ember-Slider#likert-scale-options) to know more about likert configuration. |
+| hideValue | false | Boolean to show or hide the value of the slider. ```true``` hides the value. |
+| likert | {} | Settings for likert scale. Refer section [Likert scale options](https://github.com/RVenkatesh/Ember-Slider#likert-scale-options) to know more about likert configuration. |
 
 ##### Likert scale options
-The 'likert' configuration option allows the slider to function as likert scale. It can be enabled by passing the following to 'config' option 
+
+The 'likert' property under config option provides the settings for likert scale. Likert scale can be enabled by passing the following to 'config' parameter of the slider 
 ```
 {
     likert: {
@@ -74,7 +75,7 @@ The 'likert' configuration option allows the slider to function as likert scale.
 }
 ```
 
-Just enabling likert option would provide a 3-point likert scale slider with values ranging from 0 to 2. Likert scale can be customised by adding more settings inside likert. Following are the different likert configuration options available.
+Just enabling likert scale would provide a 3-point likert scale slider with values ranging from 0 to 2. It can be customised by the following configuration options available.
 
 | Option | Default | Description |
 | --- | --- | --- |
