@@ -1,9 +1,5 @@
 @import "compass";
 
-body {
-    font-family: 'Roboto', sans-serif;
-}
-
 .ember-slider {
     /* Variables */
     $slider-path-color: #ccc;
@@ -14,6 +10,7 @@ body {
     $base-font-size: .9em;
 
     @include box-sizing();
+    @include user-select(none);
     font-size: $base-font-size;
     position: relative;
     &.hide-value, &.no-value {
@@ -166,6 +163,7 @@ body {
             left: $handle-padding / 2;
             top: $handle-padding / 2;
             z-index: 2;
+            cursor: pointer;
         }
 
         .slider-value {

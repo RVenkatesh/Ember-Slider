@@ -1,7 +1,12 @@
 # ember-slider [![Build Status](https://travis-ci.org/RVenkatesh/Ember-Slider.svg?branch=master)](https://travis-ci.org/RVenkatesh/Ember-Slider) [![npm version](https://badge.fury.io/js/%40love-open-source%2Fember-slider.svg)](https://badge.fury.io/js/%40love-open-source%2Fember-slider)
 
-This slider is built as an addon for ember applications. Follow the instructions in the [demo](https://github.com/RVenkatesh/Ember-slider#demo) section to see it in action.
+This slider is built as an addon for ember applications. This also supports [likert scale](https://en.wikipedia.org/wiki/Likert_scale). Follow the instructions in the [demo](https://github.com/RVenkatesh/Ember-slider#demo) section to see it in action.
 
+## Screenshots
+##### Basic slider
+![Basic slider](screenshots/slider.png)
+##### Likert scale slider
+![Likert scale slider](screenshots/likert-slider.png)
 ## Demo
 
 * `git clone <repository-url>` this repository
