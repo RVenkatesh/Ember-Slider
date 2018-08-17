@@ -1,7 +1,7 @@
 {
   "name": "@love-open-source/ember-slider",
   "version": "1.0.3",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Slider addon for ember. Also supports likert scale.",
   "keywords": [
     "ember-addon",
     "ember-slider",
