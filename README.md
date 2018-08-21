@@ -9,6 +9,10 @@ This slider is built as an addon for ember applications. This also supports [lik
 ![Likert scale slider](screenshots/likert-slider.png)
 ## Demo
 
+The demo for this addon is available at https://rvenkatesh.github.io/Ember-Slider/
+
+or alternatively you can also clone the repository and run it following the below instructions
+
 * `git clone <repository-url>` this repository
 * `cd ember-slider`
 * `npm install`
