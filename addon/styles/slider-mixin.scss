@@ -1,145 +1,50 @@
 @import "compass";
-@mixin slider-css($slider-path-color, $slider-filler-color, $slider-handle-color,
- $handle-width, $handle-padding, $base-font-size) {
-    @include box-sizing();
-    font-size: $base-font-size;
-    position: relative;
-    &.hide-value, &.no-value {
-        .slider-value {
-            display: none;
-        }
-    }
+@mixin slider-css($slider-path-color, $slider-filler-color, $slider-handle-color, $scale) {
+    $handle-width: 30px * $scale;
+    $handle-padding: 4px * $scale;
     &.closed {
-        .slider-pseudo-path {
-            display: none;
-        }
-        .slider-pseudo-path-closed {
-            display: block;
-        }
         .slider-handle {
             background-color: $slider-filler-color;
         }
     }
-    &.sliding {
-        .slider-handle .slider-value {
-            @include transform(translateY(-105%));
-            @include transition(transform .3s);
-            .value-mover {
-                color: #fff;
-                background: #444;
-                border-radius: 3px;
-                position: relative;
-                &:after {
-                    content: '';
-                    background: transparent;
-                    
-                    border-top: 8px solid #444;
-                    border-right: 4px solid transparent;
-                    border-left: 4px solid transparent;
-                    border-bottom: 0;
-                    margin-left: -4px;
-                    
-                    position: absolute;
-                    top: 100%;
-                    left: 50%;
-                }
-            }
-        }
-    }
-    &.animate {
-        .slider-color-filler, .slider-color-filler-closed {
-            @include transition(width .3s);
-        }
-        .slider-handle {
-            @include transition(left .3s);
-        }
-    }
-    &:not(.likert-enabled) {
-        cursor: pointer;
-    }
-    &.likert-enabled {
-        margin-bottom: 70px;
-        .likert-point {
-            cursor: pointer;
-        }
-    }
+
     .slider-path {
         width: calc(100% - #{$handle-width + $handle-padding});
-        position: relative;
-        left: 15px;
     }
     .slider-color-filler, .slider-pseudo-path {
         background-color: $slider-filler-color;
-        width: 0;
-        height: 4px;
-        border-radius: 4px;
-        margin-top: -2px;
-        position: absolute;
-        top: 50%;
     }
     .slider-pseudo-path {
         background-color: $slider-path-color;
-        width: 100%;
     }
     .slider-color-filler-closed, .slider-pseudo-path-closed {
         background-color: $slider-filler-color;
-        width: 0;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
     }
     .slider-pseudo-path-closed {
         background-color: $slider-path-color;
-        width: 100%;
         border-radius: $handle-width + $handle-padding;
 
-        display: none;
-        overflow: hidden;
         .filler-guide {
-            position: absolute;
             left: $handle-width / 2;
             width: calc(100% - #{$handle-width});
-            height: 100%;
             &:before {
-                content: '';
                 background-color: $slider-filler-color;
                 width: $handle-width / 2;
-                height: 100%;
-
-                position: absolute;
-                right: 100%;
             }
         }
     }
     .slider-handle {
-        @include transform(translateX(-15px));
-        text-align: center;
         line-height: $handle-width + $handle-padding;
 
         height: $handle-width + $handle-padding;
         width: $handle-width + $handle-padding;
         border-radius: $handle-width + $handle-padding;
-        
-        position: relative;
-        left: 0;
-        z-index: 1;
 
         &:before {
-            content: '';
             width: $handle-width * 3;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 50%;
         }
         &:after {
-            content: '';
             width: $handle-width * 3;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 80%;
         }
 
         .handle-cover {
@@ -147,60 +52,21 @@
             width: $handle-width;
             height: $handle-width;
 
-            box-shadow: 1px 1px 1px #555;
             border-radius: $handle-width;
             
-            position: absolute;
             left: $handle-padding / 2;
             top: $handle-padding / 2;
-            z-index: 2;
-        }
-
-        .slider-value {
-            position: relative;
-            z-index: 3;
-            cursor: pointer;
-            .value-mover {
-                padding: 2px;
-                display: inline;
-            }
         }
     }
     .likert-points {
         width: calc(100% - #{$handle-width + $handle-padding});
-        position: absolute;
-        left: 0;
-        top: 0;
         .likert-point {
-            text-align: center;
             background: $slider-handle-color;
             height: $handle-width + $handle-padding;
             width: $handle-width + $handle-padding;
             border-radius: $handle-width + $handle-padding;
-            box-shadow: 0px 0px 2px #555 inset;
-            position: absolute;
-            &:nth-child(1) {
-                margin-left: 0;
-            }
-            &:nth-child(odd) {
-                .likert-label {
-                    top: calc(100% + 10px);
-                }
-            }
-            &:nth-child(even) {
-                .likert-label {
-                    bottom: calc(100% + 10px);
-                }
-            }
             &.active {
                 background: $slider-filler-color;
-            }
-            .likert-label {
-                @include transform(translateX(-50%));
-                font-size: $base-font-size - .1px;
-                
-                position: absolute;
-                display: inline-block;
             }
         }
     }

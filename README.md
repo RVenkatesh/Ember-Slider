@@ -88,6 +88,13 @@ Just enabling likert scale would provide a 3-point likert scale slider with valu
 | points | 3 | Number of likert points to be shown. As of now ```ember-slider``` supports 3, 5 and 7 points. |
 | labels | [] | Label text to be displayed under each likert point of the slider. If nothing has to be displayed, pass ```null``` |
 
+## Generating custome slider theme color
+
+You can use the following blueprint to generate scss file to change slider colors
+
+```
+ember g custom-slider scssfileName --pathColor="'#c00' '#008000' '#0000FF'" --classList="'red' 'green' 'blue'" --fillerColor="'#aaa' '#aaa' '#aaa'" --handleColor="'#c00' '#c00' '#c00'" --scale="1 0.9 0.8"
+```
 
 ## Updating ember-slider
 If you are updating one version of ember slider to other, please check out the [Release notes](https://github.com/RVenkatesh/Ember-Slider/wiki/Release-notes) page for any breaking changes (which are usually rare). 

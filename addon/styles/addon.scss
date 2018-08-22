@@ -5,9 +5,173 @@
     $slider-path-color: #ccc;
     $slider-filler-color: #aaa;
     $slider-handle-color: #eee;
-    $handle-width: 30px;
-    $handle-padding: 4px;
-    $base-font-size: .9px;
-    @include slider-css($slider-path-color, $slider-filler-color, $slider-handle-color,
- $handle-width, $handle-padding, $base-font-size);
+    $scale: 0.5;
+    @include box-sizing();
+    font-size: 0.9em;
+    position: relative;
+    &.hide-value, &.no-value {
+        .slider-value {
+            display: none;
+        }
+    }
+    &.closed {
+        .slider-pseudo-path {
+            display: none;
+        }
+        .slider-pseudo-path-closed {
+            display: block;
+        }
+    }
+    &.sliding {
+        .slider-handle .slider-value {
+            @include transform(translateY(-105%));
+            @include transition(transform .3s);
+            .value-mover {
+                color: #fff;
+                background: #444;
+                border-radius: 3px;
+                position: relative;
+                &:after {
+                    content: '';
+                    background: transparent;
+                    
+                    border-top: 8px solid #444;
+                    border-right: 4px solid transparent;
+                    border-left: 4px solid transparent;
+                    border-bottom: 0;
+                    margin-left: -4px;
+                    
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                }
+            }
+        }
+    }
+    &.animate {
+        .slider-color-filler, .slider-color-filler-closed {
+            @include transition(width .3s);
+        }
+        .slider-handle {
+            @include transition(left .3s);
+        }
+    }
+    &:not(.likert-enabled) {
+        cursor: pointer;
+    }
+    &.likert-enabled {
+        margin-bottom: 70px;
+        .likert-point {
+            cursor: pointer;
+        }
+    }
+    .slider-path {
+        position: relative;
+        left: 15px;
+    }
+    .slider-color-filler, .slider-pseudo-path {
+        width: 0;
+        height: 4px;
+        border-radius: 4px;
+        margin-top: -2px;
+        position: absolute;
+        top: 50%;
+    }
+    .slider-pseudo-path {
+        width: 100%;
+    }
+    .slider-color-filler-closed, .slider-pseudo-path-closed {
+        width: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .slider-pseudo-path-closed {
+        width: 100%;
+
+        display: none;
+        overflow: hidden;
+        .filler-guide {
+            position: absolute;
+            height: 100%;
+            &:before {
+                content: '';
+                height: 100%;
+
+                position: absolute;
+                right: 100%;
+            }
+        }
+    }
+    .slider-handle {
+        @include transform(translateX(-15px));
+        text-align: center;
+        
+        position: relative;
+        left: 0;
+        z-index: 1;
+
+        &:before {
+            content: '';
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 50%;
+        }
+        &:after {
+            content: '';
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 80%;
+        }
+
+        .handle-cover {
+            box-shadow: 1px 1px 1px #555;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .slider-value {
+            position: relative;
+            z-index: 3;
+            cursor: pointer;
+            .value-mover {
+                padding: 2px;
+                display: inline;
+            }
+        }
+    }
+    .likert-points {
+        position: absolute;
+        left: 0;
+        top: 0;
+        .likert-point {
+            text-align: center;
+            box-shadow: 0px 0px 2px #555 inset;
+            position: absolute;
+            &:nth-child(1) {
+                margin-left: 0;
+            }
+            &:nth-child(odd) {
+                .likert-label {
+                    top: calc(100% + 10px);
+                }
+            }
+            &:nth-child(even) {
+                .likert-label {
+                    bottom: calc(100% + 10px);
+                }
+            }
+            .likert-label {
+                @include transform(translateX(-50%));
+                font-size: .8em;
+
+                position: absolute;
+                display: inline-block;
+            }
+        }
+    }
+    @include slider-css($slider-path-color, $slider-filler-color, $slider-handle-color, $scale);
 }

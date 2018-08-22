@@ -1,18 +1,19 @@
 @import "@love-open-source/ember-slider/styles/slider-mixin"
 
-$class-list: <%= classList %>;
-$slider-path-color: <%= pathColor %>;
-$slider-filler-color: <%= fillerColor %>;
-$slider-handle-color: <%= handleColor %>;
-$handle-width: 30px;
-$handle-padding: 4px;
-$base-font-size: .9px;
-@for $i from 1 through length($class-list) {
-  .#{nth($class-list, $i)} {
-  	$path-color: nth($slider-path-color, $i);
-	$filler-color: nth($slider-filler-color, $i);
-	$handle-color: nth($slider-handle-color, $i);
-    @include slider-css($path-color, $filler-color, $handle-color,
- $handle-width, $handle-padding, $base-font-size);
-  }
+body {
+	$class-list: <%= classList %>;
+	$slider-path-color: <%= pathColor %>;
+	$slider-filler-color: <%= fillerColor %>;
+	$slider-handle-color: <%= handleColor %>;
+	$slider-scale: <%= scale %>;
+
+	@for $i from 1 through length($class-list) {
+	  .#{"" + nth($class-list, $i)} {
+	  	$path-color: nth($slider-path-color, $i);
+		$filler-color: nth($slider-filler-color, $i);
+		$handle-color: nth($slider-handle-color, $i);
+		$scale: nth($slider-scale, $i);
+	    @include slider-css($path-color, $filler-color, $handle-color, $scale);
+	  }
+	}
 }
