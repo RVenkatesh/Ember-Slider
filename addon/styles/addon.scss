@@ -1,17 +1,13 @@
-@import "compass";
+@import "slider-mixin";
 
 .ember-slider {
     /* Variables */
     $slider-path-color: #ccc;
     $slider-filler-color: #aaa;
     $slider-handle-color: #eee;
-    $handle-width: 30px;
-    $handle-padding: 4px;
-    $base-font-size: .9em;
-
+    $scale: 1;
     @include box-sizing();
-    @include user-select(none);
-    font-size: $base-font-size;
+    font-size: 0.9em;
     position: relative;
     &.hide-value, &.no-value {
         .slider-value {
@@ -24,9 +20,6 @@
         }
         .slider-pseudo-path-closed {
             display: block;
-        }
-        .slider-handle {
-            background-color: $slider-filler-color;
         }
     }
     &.sliding {
@@ -73,12 +66,10 @@
         }
     }
     .slider-path {
-        width: calc(100% - #{$handle-width + $handle-padding});
         position: relative;
         left: 15px;
     }
     .slider-color-filler, .slider-pseudo-path {
-        background-color: $slider-filler-color;
         width: 0;
         height: 4px;
         border-radius: 4px;
@@ -87,11 +78,9 @@
         top: 50%;
     }
     .slider-pseudo-path {
-        background-color: $slider-path-color;
         width: 100%;
     }
     .slider-color-filler-closed, .slider-pseudo-path-closed {
-        background-color: $slider-filler-color;
         width: 0;
         height: 100%;
         position: absolute;
@@ -99,21 +88,15 @@
         left: 0;
     }
     .slider-pseudo-path-closed {
-        background-color: $slider-path-color;
         width: 100%;
-        border-radius: $handle-width + $handle-padding;
 
         display: none;
         overflow: hidden;
         .filler-guide {
             position: absolute;
-            left: $handle-width / 2;
-            width: calc(100% - #{$handle-width});
             height: 100%;
             &:before {
                 content: '';
-                background-color: $slider-filler-color;
-                width: $handle-width / 2;
                 height: 100%;
 
                 position: absolute;
@@ -124,11 +107,6 @@
     .slider-handle {
         @include transform(translateX(-15px));
         text-align: center;
-        line-height: $handle-width + $handle-padding;
-
-        height: $handle-width + $handle-padding;
-        width: $handle-width + $handle-padding;
-        border-radius: $handle-width + $handle-padding;
         
         position: relative;
         left: 0;
@@ -136,7 +114,6 @@
 
         &:before {
             content: '';
-            width: $handle-width * 3;
             height: 100%;
             position: absolute;
             top: 0;
@@ -144,7 +121,6 @@
         }
         &:after {
             content: '';
-            width: $handle-width * 3;
             height: 100%;
             position: absolute;
             top: 0;
@@ -152,18 +128,9 @@
         }
 
         .handle-cover {
-            background-color: $slider-handle-color;
-            width: $handle-width;
-            height: $handle-width;
-
             box-shadow: 1px 1px 1px #555;
-            border-radius: $handle-width;
-            
             position: absolute;
-            left: $handle-padding / 2;
-            top: $handle-padding / 2;
             z-index: 2;
-            cursor: pointer;
         }
 
         .slider-value {
@@ -177,17 +144,11 @@
         }
     }
     .likert-points {
-        width: calc(100% - #{$handle-width + $handle-padding});
         position: absolute;
         left: 0;
         top: 0;
         .likert-point {
             text-align: center;
-            background: $slider-handle-color;
-            height: $handle-width + $handle-padding;
-            width: $handle-width + $handle-padding;
-            border-radius: $handle-width + $handle-padding;
-            // margin-left: -($handle-width + $handle-padding);
             box-shadow: 0px 0px 2px #555 inset;
             position: absolute;
             &:nth-child(1) {
@@ -203,16 +164,14 @@
                     bottom: calc(100% + 10px);
                 }
             }
-            &.active {
-                background: $slider-filler-color;
-            }
             .likert-label {
                 @include transform(translateX(-50%));
-                font-size: $base-font-size - .1em;
-                
+                font-size: .8em;
+
                 position: absolute;
                 display: inline-block;
             }
         }
     }
+    @include slider-css($slider-path-color, $slider-filler-color, $slider-handle-color, $scale);
 }

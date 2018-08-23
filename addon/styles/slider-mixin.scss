@@ -1,0 +1,73 @@
+@import "compass";
+@mixin slider-css($slider-path-color, $slider-filler-color, $slider-handle-color, $scale) {
+    $handle-width: 30px * $scale;
+    $handle-padding: 4px * $scale;
+    &.closed {
+        .slider-handle {
+            background-color: $slider-filler-color;
+        }
+    }
+
+    .slider-path {
+        width: calc(100% - #{$handle-width + $handle-padding});
+    }
+    .slider-color-filler, .slider-pseudo-path {
+        background-color: $slider-filler-color;
+    }
+    .slider-pseudo-path {
+        background-color: $slider-path-color;
+    }
+    .slider-color-filler-closed, .slider-pseudo-path-closed {
+        background-color: $slider-filler-color;
+    }
+    .slider-pseudo-path-closed {
+        background-color: $slider-path-color;
+        border-radius: $handle-width + $handle-padding;
+
+        .filler-guide {
+            left: $handle-width / 2;
+            width: calc(100% - #{$handle-width});
+            &:before {
+                background-color: $slider-filler-color;
+                width: $handle-width / 2;
+            }
+        }
+    }
+    .slider-handle {
+        line-height: $handle-width + $handle-padding;
+
+        height: $handle-width + $handle-padding;
+        width: $handle-width + $handle-padding;
+        border-radius: $handle-width + $handle-padding;
+
+        &:before {
+            width: $handle-width * 3;
+        }
+        &:after {
+            width: $handle-width * 3;
+        }
+
+        .handle-cover {
+            background-color: $slider-handle-color;
+            width: $handle-width;
+            height: $handle-width;
+
+            border-radius: $handle-width;
+            
+            left: $handle-padding / 2;
+            top: $handle-padding / 2;
+        }
+    }
+    .likert-points {
+        width: calc(100% - #{$handle-width + $handle-padding});
+        .likert-point {
+            background: $slider-handle-color;
+            height: $handle-width + $handle-padding;
+            width: $handle-width + $handle-padding;
+            border-radius: $handle-width + $handle-padding;
+            &.active {
+                background: $slider-filler-color;
+            }
+        }
+    }
+}
