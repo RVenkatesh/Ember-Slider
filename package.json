@@ -1,6 +1,6 @@
 {
   "name": "@love-open-source/ember-slider",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Slider addon for ember. Also supports likert scale.",
   "keywords": [
     "ember-addon",
@@ -65,7 +65,8 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://rvenkatesh.github.io/Ember-Slider/"
   },
   "main": "index.js",
   "bugs": {
