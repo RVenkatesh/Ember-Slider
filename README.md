@@ -4,9 +4,17 @@ This slider is built as an addon for ember applications. This also supports [lik
 
 ## Screenshots
 ##### Basic slider
-![Basic slider](screenshots/slider.png)
+
+| type="closed" | type="sleek" |
+| --- | --- |
+| ![Basic slider](https://rvenkatesh.github.io/Ember-Slider/screenshots/slider.png) | ![Basic sleek slider](https://rvenkatesh.github.io/Ember-Slider/screenshots/slider-sleek.png) |
+
 ##### Likert scale slider
-![Likert scale slider](screenshots/likert-slider.png)
+
+| type="closed" | type="sleek" |
+| --- | --- |
+| ![Likert scale slider](https://rvenkatesh.github.io/Ember-Slider/screenshots/likert-slider.png) | ![Likert scale slider](https://rvenkatesh.github.io/Ember-Slider/screenshots/likert-slider-sleek.png) |
+
 ## Demo
 
 The demo for this addon is available at https://rvenkatesh.github.io/Ember-Slider/
