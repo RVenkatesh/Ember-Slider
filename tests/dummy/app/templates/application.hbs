@@ -14,17 +14,19 @@ This page provides an interface to look at the various slider options available.
         </div>
         <p>This is a basic slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div 
-            class="demo-button" 
-            {{action 'toggleValueDisplay' options}} 
-            onmousedown={{action 'addActiveClass'}} 
-            onmouseup={{action 'removeActiveClass'}}>
+          class="demo-button"
+          onmousedown={{action "addActiveClass"}}
+          onmouseup={{action "removeActiveClass"}}
+          {{action "toggleValueDisplay" options}}
+        >
             Toggle value display
         </div>
         <div 
-            class="demo-button" 
-            {{action 'toggleSliderType' options}} 
-            onmousedown={{action 'addActiveClass'}} 
-            onmouseup={{action 'removeActiveClass'}}>
+          class="demo-button"
+          onmousedown={{action "addActiveClass"}}
+          onmouseup={{action "removeActiveClass"}}
+          {{action "toggleSliderType" options}}
+        >
             Toggle slider type
         </div>
     </div>
@@ -43,17 +45,19 @@ This page provides an interface to look at the various slider options available.
         </div>
         <p>This is a 5 point scale likert slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div 
-            class="demo-button" 
-            {{action 'toggleValueDisplay' likertOptions}} 
-            onmousedown={{action 'addActiveClass'}} 
-            onmouseup={{action 'removeActiveClass'}}>
+          class="demo-button"
+          onmousedown={{action "addActiveClass"}}
+          onmouseup={{action "removeActiveClass"}}
+          {{action "toggleValueDisplay" likertOptions}}
+        >
             Toggle value display
         </div>
         <div 
-            class="demo-button" 
-            {{action 'toggleSliderType' likertOptions}} 
-            onmousedown={{action 'addActiveClass'}} 
-            onmouseup={{action 'removeActiveClass'}}>
+          class="demo-button"
+          onmousedown={{action "addActiveClass"}}
+          onmouseup={{action "removeActiveClass"}}
+          {{action "toggleSliderType" likertOptions}}
+        >
             Toggle slider type
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="slider-pseudo-path">
         <div class="slider-color-filler"></div>
     </div>
-    {{slider-handle value=value onStart=(action 'handleMoveStart')}}
+    {{slider-handle value=value onStart=(action "handleMoveStart")}}
 </div>
 <div class="slider-pseudo-path-closed">
     <div class="filler-guide">
@@ -10,9 +10,12 @@
     </div>
 </div>
 <div class="likert-points">
+    {{! template-lint-disable no-inline-styles style-concatenation quotes}}
     {{#each likertPoints as |point|}}
-        <div class="likert-point {{if (lte point.left _percentage) 'active'}}" 
-            style="left: {{point.left}}%;">
+        <div 
+          class="likert-point {{if (lte point.left _percentage) 'active'}}"
+          style="left: {{point.left}}%;"
+        >
             <div class="likert-label" style="min-width: {{mult likertDistance 3}}px;">{{point.label}}</div>
         </div>
     {{/each}}
