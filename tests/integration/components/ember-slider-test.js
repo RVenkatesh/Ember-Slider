@@ -1,6 +1,13 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render/*, tap, click, settled, pauseTest, wait*/ } from '@ember/test-helpers';
+import {
+render/*,
+tap,
+click,
+settled,
+pauseTest,
+wait*/, findAll
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | ember slider', function(hooks) {
@@ -79,7 +86,7 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options}}`);
 
-    assert.notEqual(this.$('.likert-point').length, 0, 'Likert scale can be enabled');
+    assert.notEqual(findAll('.likert-point').length, 0, 'Likert scale can be enabled');
   });
 
   test('it renders with default as 3-point', async function(assert) {
@@ -91,7 +98,7 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options}}`);
 
-    assert.equal(this.$('.likert-point').length, 3, '3-point likert scale rendered as default');
+    assert.dom('.likert-point').exists({ count: 3 }, '3-point likert scale rendered as default');
   });
 
   test('it renders 5-point likert scale', async function(assert) {
@@ -104,7 +111,7 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options}}`);
 
-    assert.equal(this.$('.likert-point').length, 5, '5-point likert scale rendered');
+    assert.dom('.likert-point').exists({ count: 5 }, '5-point likert scale rendered');
   });
 
   test('it renders 7-point likert scale', async function(assert) {
@@ -117,7 +124,7 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options}}`);
 
-    assert.equal(this.$('.likert-point').length, 7, '7-point likert scale rendered');
+    assert.dom('.likert-point').exists({ count: 7 }, '7-point likert scale rendered');
   });
   
   test('7-point likert scale, initialValue test', async function(assert) {

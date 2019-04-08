@@ -12,7 +12,7 @@ module('Integration | Component | slider handle', function(hooks) {
 
     await render(hbs`{{slider-handle}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 
   test('handle value set to 10', async function(assert) {
@@ -21,6 +21,6 @@ module('Integration | Component | slider handle', function(hooks) {
 
     await render(hbs`{{slider-handle value=10}}`);
 
-    assert.equal(this.$('.slider-value')[0].textContent.trim(), '10');
+    assert.dom(this.$('.slider-value')[0]).hasText('10');
   });
 });
