@@ -21,6 +21,6 @@ module('Integration | Component | slider handle', function(hooks) {
 
     await render(hbs`{{slider-handle value=10}}`);
 
-    assert.dom(this.$('.slider-value')[0]).hasText('10');
+    assert.dom(this.element.querySelector('.slider-value')[0]).hasText('10');
   });
 });
