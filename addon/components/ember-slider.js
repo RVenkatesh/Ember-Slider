@@ -41,10 +41,10 @@ export default Component.extend(RecognizerMixin, {
     this._super(...arguments);
 
     // Cache all the dom elements to reuse
-    this.set('SLIDER_PATH', this.element.querySelector('.slider-path'));
-    this.set('SLIDER_HANDLE', this.element.querySelector('.slider-handle'));
-    this.set('SLIDER_COLOR_FILLER', this.element.querySelector('.slider-color-filler'));
-    this.set('SLIDER_COLOR_FILLER_CLOSED', this.element.querySelector('.slider-color-filler-closed'));
+    this.set('SLIDER_PATH', this.$('.slider-path'));
+    this.set('SLIDER_HANDLE', this.$('.slider-handle'));
+    this.set('SLIDER_COLOR_FILLER', this.$('.slider-color-filler'));
+    this.set('SLIDER_COLOR_FILLER_CLOSED', this.$('.slider-color-filler-closed'));
     this.moveToInitialValue();
   },
   // Saves the handle position at present to the component variable

@@ -17,7 +17,7 @@ module('Integration | Component | ember slider', function(hooks) {
   test('it renders', async function(assert) {
 
     await render(hbs`{{ember-slider}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 0, 'Value set to 0');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 0, 'Value set to 0');
   });
 
   test('range configuration', async function(assert) {
@@ -25,7 +25,7 @@ module('Integration | Component | ember slider', function(hooks) {
     this.set('options', {range: {min: 10, max: 20}});
 
     await render(hbs`{{ember-slider config=options}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 10, 'Value set to 10');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 10, 'Value set to 10');
   });
 
   test('initialValue test with min=0,max=100 (default)', async function(assert) {
@@ -33,7 +33,7 @@ module('Integration | Component | ember slider', function(hooks) {
     let rand = Math.floor(Math.random() * 100);
     this.set('initialValue', rand);
     await render(hbs`{{ember-slider initialValue=initialValue}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), rand, `Value set to ${rand}`);
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), rand, `Value set to ${rand}`);
   });
 
   test('initialValue test with min=10,max=20', async function(assert) {
@@ -41,7 +41,7 @@ module('Integration | Component | ember slider', function(hooks) {
     this.set('options', {range: {min: 10, max: 20}});
 
     await render(hbs`{{ember-slider config=options initialValue=13}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 13, 'Value set to 13');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 13, 'Value set to 13');
   });
 
   test('initialValue out of bound test with < min', async function(assert) {
@@ -49,7 +49,7 @@ module('Integration | Component | ember slider', function(hooks) {
     this.set('options', {range: {min: 10, max: 20}});
 
     await render(hbs`{{ember-slider config=options initialValue=9}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 10, 'Tried setting initialValue=9, with min=10. Value set to 10');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 10, 'Tried setting initialValue=9, with min=10. Value set to 10');
   });
 
   test('initialValue out of bound test with > max', async function(assert) {
@@ -57,20 +57,20 @@ module('Integration | Component | ember slider', function(hooks) {
     this.set('options', {range: {min: 10, max: 20}});
 
     await render(hbs`{{ember-slider config=options initialValue=21}}`);
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 20, 'Tried setting initialValue=21, with max=20. Value set to 20');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 20, 'Tried setting initialValue=21, with max=20. Value set to 20');
   });
 
   // test('tap to change value', async function(assert) {
   //   assert.expect(2);
   //   await render(hbs`{{ember-slider initialValue=10}}`);
-  //   assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 10, 'Value set to 10');
+  //   assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 10, 'Value set to 10');
 
   //   this.element.querySelector('.ember-slider').on('click', function(e) {
   //     console.log("Entered ", e);
   //   });
   //   await tap('.ember-slider');
   //   await settled();
-  //   assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 0, 'Value set back to 0 by tapping');
+  //   assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 0, 'Value set back to 0 by tapping');
   // });
 });
 
@@ -137,7 +137,7 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options initialValue=4}}`);
 
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 4, '7-point likert scale rendered with initialValue as 4');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 4, '7-point likert scale rendered with initialValue as 4');
   });
 
   test('7-point likert scale, initialValue out of bound test', async function(assert) {
@@ -150,6 +150,6 @@ module('Integration | Component | ember slider | Likert scale', function(hooks) 
     this.set('options', options);
     await render(hbs`{{ember-slider config=options initialValue=9}}`);
 
-    assert.equal(parseInt(this.element.querySelector('.slider-value')[0].textContent), 6, 'Tried setting initialValue=9, with 7-point likert. Value set to 6');
+    assert.equal(parseInt(this.element.querySelector('.slider-value').textContent), 6, 'Tried setting initialValue=9, with 7-point likert. Value set to 6');
   });
 });
