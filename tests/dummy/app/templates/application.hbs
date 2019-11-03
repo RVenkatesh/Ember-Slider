@@ -1,5 +1,5 @@
 <h2 id="title">Ember slider demo</h2>
-This page provides an interface to look at the various slider options available.
+This page provides an overview of the basic slider options available.
 <div class="demo basic-slider">
     <h3>Basic 0 to 100 slider</h3>
     <div class="code">
@@ -9,10 +9,10 @@ This page provides an interface to look at the various slider options available.
     </div>
     <div class="preview">
         <h5>Preview</h5>
+        <p>This is a basic slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div class="slider-container">
             {{ember-slider config=options}}
         </div>
-        <p>This is a basic slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div 
           class="demo-button"
           onmousedown={{action "addActiveClass"}}
@@ -40,10 +40,10 @@ This page provides an interface to look at the various slider options available.
     </div>
     <div class="preview">
         <h5>Preview</h5>
+        <p>This is a 5 point scale likert slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div class="slider-container">
             {{ember-slider config=likertOptions}}
         </div>
-        <p>This is a 5 point scale likert slider setup. Try clicking on the below buttons to toggle value display and change the look of the slider</p>
         <div 
           class="demo-button"
           onmousedown={{action "addActiveClass"}}
