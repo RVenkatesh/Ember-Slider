@@ -41,17 +41,17 @@ export default Component.extend(RecognizerMixin, {
     this._super(...arguments);
 
     // Cache all the dom elements to reuse
-    this.set('SLIDER_PATH', this.$('.slider-path'));
-    this.set('SLIDER_HANDLE', this.$('.slider-handle'));
-    this.set('SLIDER_COLOR_FILLER', this.$('.slider-color-filler'));
-    this.set('SLIDER_COLOR_FILLER_CLOSED', this.$('.slider-color-filler-closed'));
+    this.set('SLIDER_PATH', this.element.querySelector('.slider-path'));
+    this.set('SLIDER_HANDLE', this.element.querySelector('.slider-handle'));
+    this.set('SLIDER_COLOR_FILLER', this.element.querySelector('.slider-color-filler'));
+    this.set('SLIDER_COLOR_FILLER_CLOSED', this.element.querySelector('.slider-color-filler-closed'));
     this.moveToInitialValue();
   },
   // Saves the handle position at present to the component variable
   // and then reuse it to during the events like sliding to easily
   // work with the state of the slider before the event started
   lockHandlePosition() {
-    let handle_left = parseInt(this.get('SLIDER_HANDLE').position().left);
+    let handle_left = parseInt(this.get('SLIDER_HANDLE').offsetLeft);
     this.set('_LOCKED_HANDLE_POSITION', handle_left);
   },
 
@@ -87,9 +87,9 @@ export default Component.extend(RecognizerMixin, {
     this.set('_percentage', percentage);
     // Move the handle to the corresponding percentage
     let percentageString = percentage + '%';
-    SLIDER_HANDLE.css('left', percentageString);
-    SLIDER_COLOR_FILLER.css('width', percentageString);
-    SLIDER_COLOR_FILLER_CLOSED.css('width', percentageString);
+    SLIDER_HANDLE.style.left = percentageString;
+    SLIDER_COLOR_FILLER.style.width = percentageString;
+    SLIDER_COLOR_FILLER_CLOSED.style.width = percentageString;
   },
 
   // Move the handle to a given px value
@@ -97,7 +97,7 @@ export default Component.extend(RecognizerMixin, {
   // which means it is the distance in px from the left most point of the slider
   moveToPX(positionInPX, animate) {
     let SLIDER_PATH = this.get( 'SLIDER_PATH');
-    let pathWidth = SLIDER_PATH.width();
+    let pathWidth = SLIDER_PATH.offsetWidth;
     // Calculate the percentage corresponding to the position in px
     let movedPercentage = (positionInPX / pathWidth) * 100;
 
@@ -129,7 +129,7 @@ export default Component.extend(RecognizerMixin, {
 
   moveToLikertPointFromPX(positionInPX, animate) {
     let SLIDER_PATH = this.get('SLIDER_PATH');
-    let pathWidth = SLIDER_PATH.width(),
+    let pathWidth = SLIDER_PATH.offsetWidth,
       // Calculate the percentage corresponding to the position in px
       movedPercentage = (positionInPX / pathWidth) * 100;
     
@@ -181,7 +181,7 @@ export default Component.extend(RecognizerMixin, {
 
   tap(event) {
     let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
-    let sliderPathLeft = this.get('SLIDER_PATH').offset().left;
+    let sliderPathLeft = this.get('SLIDER_PATH').getBoundingClientRect().left;
     // Get old value to be passed to onchange event
     let oldValue = this.get('value');
     if (this.get('likertEnabled')) {
