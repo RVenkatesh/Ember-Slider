@@ -6,6 +6,6 @@ export default Component.extend({
   classNames: 'slider-handle',
   onMove() {},
   panStart() {
-    this.get('onStart')(event);
+    this.onStart(event);
   }
 });

@@ -1,8 +1,9 @@
+{{! template-lint-disable no-curly-component-invocation}}
 <div class="slider-path">
     <div class="slider-pseudo-path">
         <div class="slider-color-filler"></div>
     </div>
-    <SliderHandle value={{this.value}} onStart={{fn "handleMoveStart"}} />
+    <SliderHandle @value={{this.value}} @onStart={{fn this.actions.handleMoveStart this}} />
 </div>
 <div class="slider-pseudo-path-closed">
     <div class="filler-guide">

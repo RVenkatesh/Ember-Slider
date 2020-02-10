@@ -180,7 +180,7 @@ export default Component.extend(RecognizerMixin, {
   // },
 
   tap(event) {
-    let tapPosition = event.originalEvent.gesture.srcEvent.pageX;
+    let tapPosition = event.gesture.srcEvent.pageX;
     let sliderPathLeft = this.get('SLIDER_PATH').getBoundingClientRect().left;
     // Get old value to be passed to onchange event
     let oldValue = this.get('value');
@@ -199,7 +199,7 @@ export default Component.extend(RecognizerMixin, {
     if (!this.get('sliding')) {
       return;
     }
-    let gesture = event.originalEvent.gesture;
+    let gesture = event.gesture;
     // Since hammer through ember-gestures is only giving us the total movement 
     // for the current event, we need to take only the handle position before the 
     // event started.
@@ -223,10 +223,10 @@ export default Component.extend(RecognizerMixin, {
     this.lockHandlePosition();
   },
   actions: {
-    handleMoveStart() {
+    handleMoveStart(self) {
       // Make this boolean 'true', in order to make sure we are capturing pan event
       // which originated from the handle
-      this.set('sliding', true);
+      self.set('sliding', true);
     }
   }
 });
