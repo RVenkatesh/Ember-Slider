@@ -32,6 +32,7 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     display: inline-block;
+    cursor: pointer;
     &:hover {
         box-shadow: 1px 1px 1px rgba(0,0,0, .2);
     }
