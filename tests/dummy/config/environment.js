@@ -5,7 +5,8 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'dummy',
     environment,
-    rootURL: '',
+    // NOTE: Make it '' for demo app build
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -44,9 +45,10 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
-    ENV.locationType = 'none';
-  }
+  // if (environment === 'production') {
+  //   // NOTE: Make it '' for demo app build
+  //   ENV.locationType = 'none';
+  // }
 
   return ENV;
 };
