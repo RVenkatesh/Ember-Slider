@@ -5,7 +5,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'dummy',
     environment,
-    rootURL: '/',
+    rootURL: '',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -44,9 +44,9 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
   }
 
-  // if (environment === 'production') {
-
-  // }
+  if (environment === 'production') {
+    ENV.locationType = 'none';
+  }
 
   return ENV;
 };
