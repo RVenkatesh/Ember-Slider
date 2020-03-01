@@ -18,6 +18,6 @@ module.exports = {
     
     // Manually importing the hammer and animation frame dependencies used by ember-gestures
     app.import('node_modules/hammerjs/hammer.js');
-    // app.import('vendor/AnimationFrame.js');
+    app.import('node_modules/animation-frame/AnimationFrame.js');
   }
 };
