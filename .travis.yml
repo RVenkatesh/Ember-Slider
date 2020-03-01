@@ -43,6 +43,7 @@ jobs:
     - stage: "Additional Tests"
       name: "Floating Dependencies"
       # install:
+        - rm -rf node_modules tmp dist
         - npm install --no-package-lock
       script:
         - npm test
