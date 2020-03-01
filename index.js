@@ -17,7 +17,7 @@ module.exports = {
     // app.import(`${app.bowerDirectory}/bootstrap/dist/js/bootstrap.js`);
     
     // Manually importing the hammer and animation frame dependencies used by ember-gestures
-    // app.import('vendor/hammer.js');
+    app.import('vendor/hammer.js');
     // app.import('vendor/AnimationFrame.js');
   }
 };
