@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
 
   // if (environment === 'production') {
-  //   // NOTE: Make it '' for demo app build
+  //   // NOTE: Uncomment this for demo app build
   //   ENV.locationType = 'none';
   // }
 
