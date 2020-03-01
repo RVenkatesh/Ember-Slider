@@ -35,7 +35,7 @@ or
 ```
 ember install @love-open-source/ember-slider
 ```
-Note: This addon uses [compass](http://compass-style.org/) for compiling the styles. If you are not using it already, please follow [this link](http://compass-style.org/install/) to install it before installing addon.
+Note that versions below v1.2.0 used [compass](http://compass-style.org/) for compiling the styles. If you do not have it already, please follow [this link](http://compass-style.org/install/) to install it before installing addon.
 ## How to use
 Include the ember slider component in the template like any other normal ember component
 ```
@@ -118,14 +118,14 @@ Following are the options available.
 ##### Examples
 1. To generate a red colored slider, you can do
 ```
-ember g custom-slider red-slider --pathColor="#c00" --classList="red" --fillerColor="#aaa" --handleColor="#c00"
+ember g custom-slider red-slider --pathColor="#f5f5f5" --classList="red" --fillerColor="rgba(#ff6b43, .3)" --handleColor="#ff6b43"
 ```
 The above command will generate a file called `_red-slider.scss` inside `app/styles` directory of your application.
 
 2. You can also generate 2 or more sliders at the same time.
 
 ```
-ember g custom-slider all-sliders --pathColor="'#c00' '#008000'" --classList="'red' 'green'" --fillerColor="'#aaa' '#aaa'" --handleColor="'#c00' '#c00'" --scale="1 0.9"
+ember g custom-slider all-sliders  --classList="red green" --pathColor="#f5f5f5 #f5f5f5" --fillerColor="rgba(#ff6b43, .3) rgba(#79c03b, .3)" --handleColor="#ff6b43 #79c03b" --scale="1 0.9"
 ```
 
 ## Updating ember-slider
