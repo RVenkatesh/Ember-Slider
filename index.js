@@ -11,7 +11,7 @@ module.exports = {
     Refer: https://github.com/quaertym/ember-cli-compass-compiler
    */
   included: function(app) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
 
     // OPTIONAL: import your addon dependencies from bower_components
     // app.import(`${app.bowerDirectory}/bootstrap/dist/js/bootstrap.js`);
