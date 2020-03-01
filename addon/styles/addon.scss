@@ -6,7 +6,7 @@
     $slider-filler-color: #aaa;
     $slider-handle-color: #eee;
     $scale: 1;
-    @include box-sizing();
+    box-sizing: border-box;
     font-size: 0.9em;
     position: relative;
     &.hide-value, &.no-value {
@@ -24,8 +24,8 @@
     }
     &.sliding {
         .slider-handle .slider-value {
-            @include transform(translateY(-105%));
-            @include transition(transform .3s);
+            transform: translateY(-105%);
+            transition: transform .3s;
             .value-mover {
                 color: #fff;
                 background: #444;
@@ -50,10 +50,10 @@
     }
     &.animate {
         .slider-color-filler, .slider-color-filler-closed {
-            @include transition(width .3s);
+            transition: width .3s;
         }
         .slider-handle {
-            @include transition(left .3s);
+            transition: left .3s;
         }
     }
     &:not(.likert-enabled) {
@@ -105,7 +105,7 @@
         }
     }
     .slider-handle {
-        @include transform(translateX(-15px));
+        transform: translateX(-15px);
         text-align: center;
         
         position: relative;
@@ -165,7 +165,7 @@
                 }
             }
             .likert-label {
-                @include transform(translateX(-50%));
+                transform: translateX(-50%);
                 font-size: .8em;
 
                 position: absolute;

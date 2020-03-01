@@ -2,13 +2,18 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const nodeSass = require('node-sass');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     'ember-cli-babel': {
       includePolyfill: true
     },
-    snippetPaths: ['tests/dummy/app/snippets']
+    snippetPaths: ['tests/dummy/app/snippets'],
+    sassOptions: {
+      implementation: nodeSass,
+      includePaths: ['addon/styles'],
+    }
   });
 
   /*

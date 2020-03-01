@@ -1,4 +1,4 @@
-@import "@love-open-source/ember-slider/styles/slider-mixin";
+@import "slider-mixin";
 
 body {
 	$class-list: <%= classList %>;

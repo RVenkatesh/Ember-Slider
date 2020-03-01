@@ -1,4 +1,3 @@
-@import "compass";
 @mixin slider-css($slider-path-color, $slider-filler-color, $slider-handle-color, $scale) {
     $handle-width: 30px * $scale;
     $handle-padding: 4px * $scale;
