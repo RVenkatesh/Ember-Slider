@@ -40,6 +40,10 @@ Note that versions below v1.2.0 used [compass](http://compass-style.org/) for co
 Include the ember slider component in the template like any other normal ember component
 ```
 {{ember-slider config=options}}
+
+or 
+
+<EmberSlider config=options/>
 ```
 Add configuration options if necessary in the corresponding route's controller or component's object
 ```
