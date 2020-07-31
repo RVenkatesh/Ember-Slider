@@ -1,4 +1,4 @@
-# ember-slider [![Build Status](https://travis-ci.org/RVenkatesh/Ember-Slider.svg?branch=master)](https://travis-ci.org/RVenkatesh/Ember-Slider) [![npm version](https://badge.fury.io/js/%40love-open-source%2Fember-slider.svg)](https://badge.fury.io/js/%40love-open-source%2Fember-slider)
+# ember-slider [![Build Status](https://travis-ci.org/RVenkatesh/Ember-Slider.svg?branch=master)](https://travis-ci.org/RVenkatesh/Ember-Slider) [![npm version](https://badge.fury.io/js/%40love-open-source%2Fember-slider.svg)](https://badge.fury.io/js/%40love-open-source%2Fember-slider)[![Rate on Openbase](https://badges.openbase.io/js/rating/@love-open-source/ember-slider.svg)](https://openbase.io/js/@love-open-source/ember-slider?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
 
 This slider is built as an addon for ember applications. This also supports [likert scale](https://en.wikipedia.org/wiki/Likert_scale). Follow the instructions in the [demo](https://github.com/RVenkatesh/Ember-slider#demo) section to see it in action.
 
