@@ -43,9 +43,9 @@ Include the ember slider component in the template like any other normal ember c
 
 or 
 
-<EmberSlider config=options/>
+<EmberSlider @config={{options}}/>
 ```
-Add configuration options if necessary in the corresponding route's controller or component's object
+Add configuration options if necessary in the corresponding route's controller or component's class
 ```
 {
     type: 'closed',
