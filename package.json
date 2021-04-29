@@ -1,6 +1,6 @@
 {
   "name": "@love-open-source/ember-slider",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Slider addon for ember. Also supports likert scale.",
   "keywords": [
     "ember-addon",
