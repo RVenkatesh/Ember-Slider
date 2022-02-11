@@ -34,7 +34,7 @@
     "ember-hammertime": "^1.6.0",
     "ember-math-helpers": "^2.16.0",
     "ember-truth-helpers": "^3.0.0",
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
